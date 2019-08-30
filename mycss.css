@@ -1,0 +1,21 @@
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    
+}
+
+.bg-coin {
+    background-image: url(./Images/round-seal-sticker-md.png);
+    background-size: cover;
+
+}
+
+
+#infoBtn {
+    opacity: 1;
+    cursor: pointer;
+    width: 5rem;
+}
+
+#infoBtn:hover {
+    opacity: 0.8;
+}
