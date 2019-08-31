@@ -5,10 +5,10 @@ api.getCurrencies().then((result) => {
 
 function getCurrenciesNameSymble(currencies) {
     const currenciesNameSymbol = currencies.map((currency) => {
-    const {name , symbol} = currency;
-        return {name , symbol};
-    }) 
-  draw (currenciesNameSymbol);  
+        const { name, symbol } = currency;
+        return { name, symbol };
+    })
+    draw(currenciesNameSymbol);
 }
 
 
@@ -16,12 +16,14 @@ function getCurrenciesNameSymble(currencies) {
 
 
 function draw(currenciesNameSymbol) {
-    currenciesNameSymbol.forEach((currency, index, currenciesNameSymbol) => {                  
+    currenciesNameSymbol.forEach((currency, index, currenciesNameSymbol) => {
         const clonedCard = $("#coinCard").clone();
         clonedCard.find("h5").html(currenciesNameSymbol[index].name);
         clonedCard.find("p").html(currenciesNameSymbol[index].symbol);
+        clonedCard.find("input").attr("id", currenciesNameSymbol[index].name);
+        clonedCard.find("label").attr("for", currenciesNameSymbol[index].name);
         $("#divCoins").append(clonedCard);
-        
+
     })
 }
 

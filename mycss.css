@@ -1,5 +1,6 @@
 body {
     font-family: Arial, Helvetica, sans-serif;
+    user-select:none;
     
 }
 
@@ -10,12 +11,12 @@ body {
 }
 
 
-#infoBtn {
+.infoBtn {
     opacity: 1;
     cursor: pointer;
     width: 5rem;
 }
 
-#infoBtn:hover {
+.infoBtn:hover {
     opacity: 0.8;
 }
