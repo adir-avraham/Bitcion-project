@@ -8,7 +8,21 @@ body {
     background-image: url(./Images/round-seal-sticker-md.png);
     background-size: cover;
 
+
+
 }
+
+.bg-silver-coin {
+    background-image: url(./Images/blank-coin-md.png);
+    background-size: cover;
+    transition: 4s;
+    -webkit-transform: rotateY( 180deg ); 
+    -moz-transform: rotateY( 180deg );
+    -o-transform: rotateY( 180deg );
+    transform: rotateY( 180deg );
+
+}
+
 
 
 .infoBtn {
