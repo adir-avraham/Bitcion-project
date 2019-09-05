@@ -37,8 +37,14 @@
         <div id="coinCard" class="bg-coin m-3" style="width: 15rem; height: 15rem;display: none">
             <div class="card-body text-center mt-2">
                 <h5 class="card-title"></h5>
-                <p class="card-text"></p>
-                <img alt="Bitcoin" class="infoBtn" src="./Images/more-info-button-th.png">
+                <div id="name" class="card-text"></div>
+  
+                    <img alt="Bitcoin" data-toggle="collapse" data-target="#moreInfo" aria-expanded="false" aria-controls="moreInfo" class="infoBtn" src="./Images/more-info-button-th.png">
+
+       
+                <div class="collapse" id="moreInfo">
+
+                </div>
                 <div class="custom-control custom-checkbox">
                     <input type="checkbox" class="custom-control-input" id="customCheck1">
                     <label class="custom-control-label mt-2" for="customCheck1"></label>
@@ -53,9 +59,12 @@
 
 
 
+
     <script src="./icon.js"></script>
-    <script src="./jQuery.js"></script>
-    <script src="service.js"></script>
+    <script src="./jquery.min.js"></script>
+    <script src="./bootstrap.min.js"></script>
+    <script src="./jquery.js"></script>
+    <script src="./service.js"></script>
     <script src="./index.js"></script>
 </body>
 

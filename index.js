@@ -1,5 +1,6 @@
 api.getCurrencies().then((result) => {
-    currencies = result.slice(0, 10).map(currency => currency);
+    currencies = result.slice(0, 10)
+   // .map(currency => currency);
     getCurrenciesNameSymble(currencies);
 })
 
@@ -19,10 +20,23 @@ function draw(currenciesNameSymbol) {
     currenciesNameSymbol.forEach((currency, index, currenciesNameSymbol) => {
         const clonedCard = $("#coinCard").clone();
         clonedCard.css({ display: "inline-block" });
-        clonedCard.find("h5").html(currenciesNameSymbol[index].name);
-        clonedCard.find("p").html(currenciesNameSymbol[index].symbol);
+        clonedCard.find("#name").html(currenciesNameSymbol[index].name);
+        clonedCard.find("h5").html(currenciesNameSymbol[index].symbol);
         clonedCard.find("input").attr("id", currenciesNameSymbol[index].name);
         clonedCard.find(".infoBtn").attr("alt", currenciesNameSymbol[index].name);
+
+
+        // clonedCard.find(".infoBtn").attr("data-toggle", "collapse");
+        clonedCard.find(".infoBtn").attr("data-target", `#${currenciesNameSymbol[index].symbol}`);
+        // clonedCard.find(".infoBtn").attr("aria-expanded", "false");
+        clonedCard.find(".infoBtn").attr("aria-controls", currenciesNameSymbol[index].symbol);
+        
+        
+        clonedCard.find("#moreInfo").attr("id", currenciesNameSymbol[index].symbol);
+      
+
+    
+
         clonedCard.find(".infoBtn").on("click", function (event) {
             searchinfo(event.target.alt.toLowerCase(), event)
             //console.log(event.toElement.parentElement.parentElement)
@@ -43,6 +57,8 @@ function searchinfo(currency, event) {
 
     api.getCurrencyInfoById(currency).then((result) => {
 
+        const symbol_id_collapse = result.symbol
+
         const image = result.image.small;
         const current_price_usd = result.market_data.current_price.usd;
         const current_price_eur = result.market_data.current_price.eur;
@@ -53,7 +69,7 @@ function searchinfo(currency, event) {
 
 
         console.log(result)
-        drawInfo(image)
+        drawInfo(image, symbol_id_collapse)
         //console.log(image)
         console.log(current_price_usd + "$")
         console.log(current_price_eur + "EUR")
@@ -62,12 +78,12 @@ function searchinfo(currency, event) {
     })
 
     //$(this).toggleClass("bg-silver-coin");
-    function drawInfo(image) {
-        $(coinCard).toggleClass("bg-silver-coin");
+    function drawInfo(image, symbol_id_collapse) {
+        //can use later when chosing a coin =>    $(coinCard).toggleClass("bg-silver-coin");
         console.log(image);
-        setTimeout(function(){ 
-            $(coinCard).find("h5").html(`<img src=${image}>`);          
-             }, 1600);
+           
+            $(coinCard).find(`#${symbol_id_collapse}`).html(`<img src=${image}>`);          
+                 
   
             
         // const coinDiv = event.target.parentElement.parentElement;
