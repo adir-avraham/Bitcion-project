@@ -25,13 +25,9 @@ function draw(currenciesNameSymbol) {
         clonedCard.find("input").attr("id", currenciesNameSymbol[index].name);
         clonedCard.find(".infoBtn").attr("alt", currenciesNameSymbol[index].name);
 
-
-        // clonedCard.find(".infoBtn").attr("data-toggle", "collapse");
         clonedCard.find(".infoBtn").attr("data-target", `#${currenciesNameSymbol[index].symbol}`);
-        // clonedCard.find(".infoBtn").attr("aria-expanded", "false");
         clonedCard.find(".infoBtn").attr("aria-controls", currenciesNameSymbol[index].symbol);
-        
-        
+                
         clonedCard.find("#moreInfo").attr("id", currenciesNameSymbol[index].symbol);
       
 
@@ -57,7 +53,6 @@ function searchinfo(currency, event) {
 
     api.getCurrencyInfoById(currency).then((result) => {
 
-        const symbol_id_collapse = result.symbol
 
         const image = result.image.small;
         const current_price_usd = result.market_data.current_price.usd;
@@ -69,7 +64,7 @@ function searchinfo(currency, event) {
 
 
         console.log(result)
-        drawInfo(image, symbol_id_collapse)
+        drawInfo(image, current_price_usd, current_price_eur, current_price_ils)
         //console.log(image)
         console.log(current_price_usd + "$")
         console.log(current_price_eur + "EUR")
@@ -77,17 +72,19 @@ function searchinfo(currency, event) {
 
     })
 
-    //$(this).toggleClass("bg-silver-coin");
-    function drawInfo(image, symbol_id_collapse) {
+
+    function drawInfo(image, current_price_usd, current_price_eur, current_price_ils) {
         //can use later when chosing a coin =>    $(coinCard).toggleClass("bg-silver-coin");
         console.log(image);
            
-            $(coinCard).find(`#${symbol_id_collapse}`).html(`<img src=${image}>`);          
-                 
+        $(coinCard).find("#img").html(`<img src=${image}>`);   
+        $(coinCard).find("img").addClass("rounded-lg");   
+        $(coinCard).find("#usd").text(`${current_price_usd} $`);          
+        $(coinCard).find("#eur").html(`${current_price_eur} &euro;`);          
+        $(coinCard).find("#ils").html(`${current_price_ils} &#8362;`);          
+        
   
             
-        // const coinDiv = event.target.parentElement.parentElement;
-        // $(coinDiv).toggleClass("bg-silver-coin");
 
     }
 
@@ -95,52 +92,3 @@ function searchinfo(currency, event) {
 
 
 
-
-
-
-
-
-
-
-
-
-//console.log(api.getCurrencyInfoById("bitcoin"))
-
-
-
-
-
-/*
-
-$(".infoBtn").click(function(event) {
-    console.log(event.target.alt.toLowerCase())
-})
-
-function searchinfo (e) {
-    console.log(this)
-    const currency = "bitcoin"
-    api.getCurrencyInfoById(currency).then((result) => {
-
-        const image = result.image.small;
-        const current_price_usd = result.market_data.current_price.usd;
-        const current_price_eur = result.market_data.current_price.eur;
-        const current_price_ils = result.market_data.current_price.ils;
-
-
-        console.log(result)
-
-        console.log(image)
-        console.log(current_price_usd + "$")
-        console.log(current_price_eur + "EUR")
-        console.log(current_price_ils + "ILS" )
-
-    })
-
-
-
-
-}
-
-
-
-*/

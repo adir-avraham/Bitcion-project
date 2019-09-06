@@ -9,7 +9,7 @@
 
 <body>
     <div class="jumbotron text-center bg-warning text-white">
-        <div class="container">
+        <div class="container ">
             <h1 class="display-4">Currencies<span class="fab fa-bitcoin"></span></h1>
         </div>
     </div>
@@ -34,20 +34,34 @@
     </nav>
     <div id="divCoins" class="row">
 
-        <div id="coinCard" class="bg-coin m-3" style="width: 15rem; height: 15rem;display: none">
+        <div id="coinCard" class="bg-coin m-3" style="width: 18rem; height: 18rem;display: none">
             <div class="card-body text-center mt-2">
                 <h5 class="card-title"></h5>
-                <div id="name" class="card-text"></div>
-  
+                <div class="form-group row mb-1">
+
+                    <div id="name" class="card-text col-8">
+                        
+                    </div>
+                    <div class="col-0">
+
+                        <div class="custom-control custom-checkbox form-check">
+                            <input type="checkbox" class="custom-control-input" id="customCheck1">
+                            <label class="custom-control-label" for="customCheck1"></label>
+                        </div>
+                        
+                    </div>
+                </div>
+
                     <img alt="Bitcoin" data-toggle="collapse" data-target="#moreInfo" aria-expanded="false" aria-controls="moreInfo" class="infoBtn" src="./Images/more-info-button-th.png">
+
 
        
                 <div class="collapse" id="moreInfo">
+                    <div id="usd"></div>
+                    <div id="eur"></div>
+                    <div id="ils"></div>
+                    <div id="img"></div>
 
-                </div>
-                <div class="custom-control custom-checkbox">
-                    <input type="checkbox" class="custom-control-input" id="customCheck1">
-                    <label class="custom-control-label mt-2" for="customCheck1"></label>
                 </div>
             </div>
         </div>
