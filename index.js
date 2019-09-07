@@ -125,6 +125,7 @@ function checkedCurrency () {
       if (selectedCurrency.length > 3) {
           alert ("3 currencies max");
           this.checked = false;
+          selectedCurrency.splice(selectedCurrency.length - 1,1);
           return;
         } 
     } else {
