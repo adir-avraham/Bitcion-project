@@ -113,10 +113,7 @@ function showReports () {
     $("#divCoins").html("<h1>adir</h1>")
     
     
-    api.getCurrenciesPrice(selectedCurrency[0], selectedCurrency[1], selectedCurrency[2], selectedCurrency[3], selectedCurrency[4]).then((result) => {
-       console.log(result)
-    })
-
+    
 }
 
 
@@ -124,29 +121,23 @@ let selectedCurrency = [];
 function checkedCurrency () {
     const checked = $(this).val().toUpperCase();
     if ($(this).is(':checked')) {
-      selectedCurrency.push(checked);
+        selectedCurrency.push(checked);
       if (selectedCurrency.length > 3) {
-          alert ("5 currencies max");
+          alert ("3 currencies max");
           this.checked = false;
           return;
-      } 
+        } 
     } else {
       selectedCurrency.splice($.inArray(checked, selectedCurrency),1);
     }
     console.log(selectedCurrency)
 
+    
 
-/*
-
-    let selectedCurrency = [];
-    //console.log(this.checked)
-    const checkedCurrency = this.id.toUpperCase();
-    selectedCurrency.push(checkedCurrency);
-
-    console.log(selectedCurrency);
-
-    */
- 
+   api.getCurrenciesPrice(selectedCurrency[0], selectedCurrency[1], selectedCurrency[2], selectedCurrency[3], selectedCurrency[4]).then((result) => {
+      console.log(result)
+   })
+   
 }
 
 init()
