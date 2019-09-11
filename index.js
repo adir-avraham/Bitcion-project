@@ -1,49 +1,37 @@
 async function init() {
-
-
     api.getCurrencies().then((result) => {
         currencies = result.slice(0, 10)
-        // .map(currency => currency);
         getCurrenciesNameSymble(currencies);
     })
-
-
-
-
 }
+
+
 
 
 function search(searchBy, value, data) {
     const result = [];
     if (!Array.isArray(data) || !searchBy || !value) return data;
     for (let index = 0; index < data.length; index++) {
-      // if (data[index][searchBy] === value.toLowerCase()) {
-      if (data[index]["symbol"].includes(value.toLowerCase())) {
-        result.push(data[index]);
-      }
+        // if (data[index][searchBy] === value.toLowerCase()) {
+        if (data[index]["symbol"] === (value.toLowerCase())) {
+            result.push(data[index]);
+        }
     }
     // return data.filter((car) => {
     //     return car[searchBy].includes(value.toLowerCase())
     // })
     console.log(result)
     return result;
- 
-  }
-  
+}
 
-$("#searchInput").on("keyup", searchAction)
 
-function searchAction () {
+$("#searchBtn").on("click", searchAction)
 
+function searchAction() {
     api.getCurrencies().then((result) => {
         currencies = result.slice(0, 10)
-        // .map(currency => currency);
-        draw(search("name", $(this).val(), currencies))
-     
-       
+        draw(search("name", $("#searchInput").val(), currencies))
     })
-
-
 }
 
 
@@ -51,6 +39,7 @@ function searchAction () {
 
 //$("#home").on("click", init)
 $("#reports").on("click", showReports);
+
 
 function getCurrenciesNameSymble(currencies) {
     const currenciesNameSymbol = currencies.map((currency) => {
@@ -74,30 +63,23 @@ function draw(currenciesNameSymbol) {
 
         clonedCard.find("input").attr("id", currenciesNameSymbol[index].symbol);
         clonedCard.find("input").attr("value", currenciesNameSymbol[index].symbol);
-
-
         clonedCard.find("input").on("change", checkedCurrency)
+        clonedCard.find("input").on("click", checkMaxCurrency)
 
         clonedCard.find(".infoBtn").attr("alt", currenciesNameSymbol[index].name);
-
         clonedCard.find(".infoBtn").attr("data-target", `#a${currenciesNameSymbol[index].name}`);
         clonedCard.find(".infoBtn").attr("aria-controls", `a${currenciesNameSymbol[index].name}`);
-
-        clonedCard.find("#moreInfo").attr("id", `a${currenciesNameSymbol[index].name}`);
-
-
-
-
         clonedCard.find(".infoBtn").on("click", function (event) {
             searchinfo(event.target.alt.toLowerCase(), event)
-            //console.log(event.toElement.parentElement.parentElement)
         })
-        clonedCard.find("label").attr("for", currenciesNameSymbol[index].symbol);
-        $("#divCoins").append(clonedCard);
 
+        clonedCard.find("#moreInfo").attr("id", `a${currenciesNameSymbol[index].name}`);
+    
+        clonedCard.find("label").attr("for", currenciesNameSymbol[index].symbol);
+
+        $("#divCoins").append(clonedCard);
     })
 }
-
 
 
 
@@ -117,10 +99,9 @@ function searchinfo(currency, event) {
 
 
 
-
         console.log(result)
         drawInfo(image, current_price_usd, current_price_eur, current_price_ils)
-        //console.log(image)
+
         console.log(current_price_usd + "$")
         console.log(current_price_eur + "EUR")
         console.log(current_price_ils + "ILS")
@@ -128,70 +109,67 @@ function searchinfo(currency, event) {
     })
 
 
-    function drawInfo(image, current_price_usd, current_price_eur, current_price_ils) {
-        //can use later when chosing a coin =>    $(coinCard).toggleClass("bg-silver-coin");
-        console.log(image);
 
+    function drawInfo(image, current_price_usd, current_price_eur, current_price_ils) {     
         $(coinCard).find("#img").html(`<img src=${image}>`);
         $(coinCard).find("img").addClass("rounded-lg");
         $(coinCard).find("#usd").text(`${current_price_usd} $`);
         $(coinCard).find("#eur").html(`${current_price_eur} &euro;`);
         $(coinCard).find("#ils").html(`${current_price_ils} &#8362;`);
-
-
-
-
     }
-
 }
 
 
 
 
 
-function showReports() {
-    $("#divCoins").html("<h1>adir</h1>")
 
-
-
-}
-
-
-let selectedCurrency = [];
+const selectedCurrency = [];
 
 function checkedCurrency() {
+
     const checked = $(this).val().toUpperCase();
     $(this.parentElement.parentElement.parentElement.parentElement.parentElement).toggleClass("bg-silver-coin");
     if ($(this).is(':checked')) {
 
         selectedCurrency.push(checked);
         
-        // const clonedListItem = $(this.parentElement).clone();
-        // clonedListItem.append(checked);
-        // $(".list-group").append(clonedListItem);
-        
-        if (selectedCurrency.length > 2) {
-            $("#exampleModal").modal();
-            
-            $(this).prop('checked', false)
-            $(this.parentElement.parentElement.parentElement.parentElement.parentElement).toggleClass("bg-silver-coin");
-            selectedCurrency.splice($.inArray(checked, selectedCurrency), 1);
-        }
-    } 
+    }
     else {
         $(this).prop('checked', false)
         selectedCurrency.splice($.inArray(checked, selectedCurrency), 1);
     }
 
-
-
     console.log(selectedCurrency)
-
+    
     api.getCurrenciesPrice(selectedCurrency[0], selectedCurrency[1], selectedCurrency[2], selectedCurrency[3], selectedCurrency[4]).then((result) => {
         console.log(result)
     })
 
 }
+
+function checkMaxCurrency() {
+    console.log($(this).is(':checked'), selectedCurrency.length)
+    if ($(this).is(':checked') && selectedCurrency.length === 2) {
+        openModal()
+        return false;
+    }
+}
+
+
+function openModal() {
+    $("#exampleModal").modal();
+    
+    
+}
+
+
+
+function showReports() {
+    $("#divCoins").html("<h1>adir</h1>")
+
+}
+
 
 init()
 
