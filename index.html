@@ -8,9 +8,9 @@
 </head>
 
 <body>
-    <div class="jumbotron text-center bg-warning text-white">
-        <div class="container ">
-            <h1 class="display-4">Currencies<span class="fab fa-bitcoin"></span></h1>
+    <div class="jumbotron text-left bg-warning text-white parallax2 mb-0">
+        <div class="container">
+            <h1 class="display-4">Currencies</h1>
         </div>
     </div>
     <nav class="navbar navbar-expand navbar-dark bg-dark">
@@ -27,45 +27,91 @@
                 </li>
             </ul>
             <form class="form-inline my-2 my-lg-0">
-                <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                <input id="searchInput" class="form-control mr-sm-2" type="search" placeholder="Search"
+                    aria-label="Search">
                 <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
             </form>
         </div>
     </nav>
-    <div id="divCoins" class="row d-flex justify-content-around">
+    <div id="divCoins" class="row d-flex justify-content-around parallax1">
+    </div>
+    <div id="coinCard" class="bg-coin m-2" style="width: 18rem; height: 18rem;display: none">
+        <div class="card-body text-center mt-2">
+            <h5 class="card-title"></h5>
+            <div class="form-group row mb-1">
 
-        <div id="coinCard" class="bg-coin m-2" style="width: 18rem; height: 18rem;display: none">
-            <div class="card-body text-center mt-2">
-                <h5 class="card-title"></h5>
-                <div class="form-group row mb-1">
+                <div id="name" class="card-text col-8">
 
-                    <div id="name" class="card-text col-8">
-                        
-                    </div>
-                    <div class="col-0">
+                </div>
+                <div class="col-0">
 
-                        <div class="custom-control custom-checkbox form-check">
+                    <!-- <div class="custom-control custom-checkbox form-check">
                             <input type="checkbox" class="custom-control-input" id="customCheck1">
                             <label class="custom-control-label" for="customCheck1"></label>
-                        </div>
-                        
+                        </div> -->
+
+                    <div class="custom-control custom-switch">
+                        <input type="checkbox" class="custom-control-input" id="customSwitch1">
+                        <label class="custom-control-label" for="customSwitch1"></label>
                     </div>
-                </div>
 
-                    <img alt="Bitcoin" data-toggle="collapse" data-target="#moreInfo" aria-expanded="false" aria-controls="moreInfo" class="infoBtn" src="./Images/more-info-button-th.png">
-
-
-       
-                <div class="collapse" id="moreInfo">
-                    <div id="usd"></div>
-                    <div id="eur"></div>
-                    <div id="ils"></div>
-                    <div id="img"></div>
 
                 </div>
             </div>
-        </div>
 
+            <img alt="Bitcoin" data-toggle="collapse" data-target="#moreInfo" aria-expanded="false"
+                aria-controls="moreInfo" class="infoBtn" src="./Images/more-info-button-th.png">
+
+
+
+            <div class="collapse" id="moreInfo">
+                <div id="usd"></div>
+                <div id="eur"></div>
+                <div id="ils"></div>
+                <div id="img"></div>
+
+            </div>
+        </div>
+    </div>
+
+
+
+    <!-- Button trigger modal -->
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+        Launch demo modal
+    </button>
+
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">You can select up to 5 currencies.</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p>Please remove one of the selected currencies below or cancel to continue without any changes.</p>
+                    <ul class="list-group">
+                        <li id="modalListItem"
+                            class="list-group-item d-flex justify-content-between align-items-center">
+                            <span>
+                                Cras justo odio
+
+                            </span>
+                        </li>
+
+                    </ul>
+                </div>
+                <div class="modal-footer">
+                    <button id="cancelBtn" type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                    <button id="saveBtn" type="button" class="btn btn-primary">Save changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
 
 
 
