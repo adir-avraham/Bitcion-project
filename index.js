@@ -131,12 +131,10 @@ function checkedCurrency() {
     const checked = $(this).val().toUpperCase();
     $(this.parentElement.parentElement.parentElement.parentElement.parentElement).toggleClass("bg-silver-coin");
     if ($(this).is(':checked')) {
-
-        selectedCurrency.push(checked);
-        
+        selectedCurrency.push(checked);       
     }
     else {
-        $(this).prop('checked', false)
+        //$(this).prop('checked', false)
         selectedCurrency.splice($.inArray(checked, selectedCurrency), 1);
     }
 
@@ -149,7 +147,6 @@ function checkedCurrency() {
 }
 
 function checkMaxCurrency() {
-    console.log($(this).is(':checked'), selectedCurrency.length)
     if ($(this).is(':checked') && selectedCurrency.length === 2) {
         openModal()
         return false;
@@ -158,8 +155,16 @@ function checkMaxCurrency() {
 
 
 function openModal() {
+    $("#modalListGroup").empty();
+    for (let i = 0; i < selectedCurrency.length; i++ ) {
+        const listItem = $("#listItem").clone()
+        listItem.find("span").text(selectedCurrency[i]);
+        listItem.find("input").attr("id", `item-${i}`); 
+        listItem.find("label").attr("for", `item-${i}`);
+        $("#modalListGroup").append(listItem);
+        
+    }
     $("#exampleModal").modal();
-    
     
 }
 

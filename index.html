@@ -85,16 +85,19 @@
                 </div>
                 <div class="modal-body">
                     <p>Please remove one of the selected currencies below or cancel to continue without any changes.</p>
-                    <ul class="list-group">
-                        <li id="modalListItem"
-                            class="list-group-item d-flex justify-content-between align-items-center">
-                            <span>
-                                Cras justo odio
-
-                            </span>
-                        </li>
-
+                    <ul id="modalListGroup" class="list-group">
+                        
                     </ul>
+                            <li id="listItem" class="list-group-item d-flex justify-content-between align-items-center">
+                                <span>
+                                    Cras justo odio
+    
+                                </span>
+                                <div class="custom-control custom-switch">
+                                        <input type="checkbox" class="custom-control-input" id="customSwitch1" checked>
+                                        <label class="custom-control-label" for="customSwitch1"></label>
+                                    </div>
+                            </li>
                 </div>
                 <div class="modal-footer">
                     <button id="cancelBtn" type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
