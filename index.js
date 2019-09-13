@@ -9,19 +9,10 @@ async function init() {
 
 
 function search(searchBy, value, data) {
-    const result = [];
     if (!Array.isArray(data) || !searchBy || !value) return data;
-    for (let index = 0; index < data.length; index++) {
-        // if (data[index][searchBy] === value.toLowerCase()) {
-        if (data[index]["symbol"] === (value.toLowerCase())) {
-            result.push(data[index]);
-        }
-    }
-    // return data.filter((car) => {
-    //     return car[searchBy].includes(value.toLowerCase())
-    // })
-    console.log(result)
-    return result;
+    return data.filter((car) => {
+        return car[searchBy] === (value.toLowerCase())
+    })
 }
 
 
@@ -30,7 +21,7 @@ $("#searchBtn").on("click", searchAction)
 function searchAction() {
     api.getCurrencies().then((result) => {
         currencies = result.slice(0, 10)
-        draw(search("name", $("#searchInput").val(), currencies))
+        draw(search("symbol", $("#searchInput").val(), currencies))
     })
 }
 
