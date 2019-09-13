@@ -120,7 +120,7 @@ const selectedCurrency = [];
 function checkedCurrency() {
 
     const checked = $(this).val().toUpperCase();
-    $(this.parentElement.parentElement.parentElement.parentElement.parentElement).toggleClass("bg-silver-coin");
+//    $(this).parents(".bg-coin").toggleClass("bg-silver-coin");
     if ($(this).is(':checked')) {
         selectedCurrency.push(checked);       
     }
@@ -135,6 +135,7 @@ function checkedCurrency() {
     })
 
 }
+
 
 function checkMaxCurrency() {
     if ($(this).is(':checked') && selectedCurrency.length === 2) {
@@ -152,15 +153,12 @@ function openModal() {
         listItem.find("input").attr("id", `item-${i}`); 
         listItem.find("input").attr("value", selectedCurrency[i]);
         listItem.find("label").attr("for", `item-${i}`);
-
         listItem.find("input").on("change", checkedCurrencyInModal)
-
-        $("#modalListGroup").append(listItem);
-        
+        $("#modalListGroup").append(listItem);       
     }
     $("#exampleModal").modal();
-    
 }
+
 
 function checkedCurrencyInModal() {
     const checked = $(this).val().toUpperCase();
@@ -170,9 +168,8 @@ function checkedCurrencyInModal() {
     else {
         selectedCurrency.splice($.inArray(checked, selectedCurrency), 1);
     }
-  console.log("valto delete", checked)
-  console.log("new array", selectedCurrency)
 }
+
 
 $("#saveBtn").on("click", saveChangesModal)
 
@@ -182,20 +179,15 @@ function saveChangesModal() {
     
     for (index=0; index <= $(".input-cards-id").length - 2; index++ ) {
         const temp = $(".input-cards-id")[index]["value"];
-        
-        if ($(".input-cards-id")[index].checked && selectedCurrency.includes(temp.toUpperCase())) {
-            console.log("exist in arraty:")
-            console.log($(".input-cards-id")[index]);
-            console.log($(".input-cards-id")[index]["value"])
-   
+        const input = $(".input-cards-id")[index];
+        if (input.checked && selectedCurrency.includes(temp.toUpperCase())) {
         }   else {
-            $(".input-cards-id")[index].checked = false;
-        //    $((".input-cards-id")[index].parentElement.parentElement).toggleClass("bg-coin");
+            input.checked = false;
+                 
+        // almost working=>>    ($(input.parentElement.parentElement.parentElement.parentElement)).toggleClass("bg-coin");
+
         }  
-
 }
-
-
     $("#exampleModal").modal('hide');
 }
 
