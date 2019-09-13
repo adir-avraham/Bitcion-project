@@ -149,6 +149,7 @@ function openModal() {
     $("#modalListGroup").empty();
     for (let i = 0; i < selectedCurrency.length; i++ ) {
         const listItem = $("#listItem").clone()
+        listItem.css({ visibility: "visible" });
         listItem.find("span").text(selectedCurrency[i]);
         listItem.find("input").attr("id", `item-${i}`); 
         listItem.find("input").attr("value", selectedCurrency[i]);
