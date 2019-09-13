@@ -64,7 +64,7 @@ function draw(currenciesNameSymbol) {
             searchinfo(event.target.alt.toLowerCase(), event)
         })
 
-        clonedCard.find("#moreInfo").attr("id", `a${currenciesNameSymbol[index].name}`);
+        clonedCard.find(".collapse").attr("id", `a${currenciesNameSymbol[index].name}`);
     
         clonedCard.find("label").attr("for", currenciesNameSymbol[index].symbol);
 
@@ -163,8 +163,19 @@ $("#saveBtn").on("click", saveChangesModal)
 
 
 function saveChangesModal() {
-    console.log("changes saved")
     
+    api.getCurrencies().then((result) => {
+        currencies = result.slice(0, 10)
+        getCurrenciesNameSymble(currencies);
+    })
+
+
+    const selected = currencies.filter((currency) => {
+        return currency["symbol"].toLowerCase() === selectedCurrency[0].toLowerCase() || currency["symbol"] === selectedCurrency[1].toLowerCase()
+    })
+    
+    
+    console.log("changes saved",  selected)
 
 
 
