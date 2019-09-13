@@ -10,8 +10,8 @@ async function init() {
 
 function search(searchBy, value, data) {
     if (!Array.isArray(data) || !searchBy || !value) return data;
-    return data.filter((car) => {
-        return car[searchBy] === (value.toLowerCase())
+    return data.filter((currency) => {
+        return currency[searchBy] === (value.toLowerCase())
     })
 }
 
@@ -157,6 +157,18 @@ function openModal() {
     }
     $("#exampleModal").modal();
     
+}
+
+$("#saveBtn").on("click", saveChangesModal)
+
+
+function saveChangesModal() {
+    console.log("changes saved")
+    
+
+
+
+    $("#exampleModal").modal('hide');
 }
 
 
