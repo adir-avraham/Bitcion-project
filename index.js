@@ -125,7 +125,6 @@ function checkedCurrency() {
         selectedCurrency.push(checked);       
     }
     else {
-        //$(this).prop('checked', false)
         selectedCurrency.splice($.inArray(checked, selectedCurrency), 1);
     }
 
@@ -165,19 +164,14 @@ function openModal() {
 
 function checkedCurrencyInModal() {
     const checked = $(this).val().toUpperCase();
-   
-
     if ($(this).is(':checked')) {
         selectedCurrency.push(checked);       
     }
     else {
-
         selectedCurrency.splice($.inArray(checked, selectedCurrency), 1);
     }
-
   console.log("valto delete", checked)
   console.log("new array", selectedCurrency)
-
 }
 
 $("#saveBtn").on("click", saveChangesModal)
@@ -185,19 +179,21 @@ $("#saveBtn").on("click", saveChangesModal)
 
 function saveChangesModal() {
     
-    api.getCurrencies().then((result) => {
-        currencies = result.slice(0, 10)
-        getCurrenciesNameSymble(currencies);
-    })
-
-
-    const selected = currencies.filter((currency) => {
-        return currency["symbol"].toLowerCase() === selectedCurrency[0].toLowerCase() || currency["symbol"] === selectedCurrency[1].toLowerCase()
-    })
     
-    
-    console.log("changes saved",  selected)
+    for (index=0; index <= $(".input-cards-id").length - 2; index++ ) {
+        const temp = $(".input-cards-id")[index]["value"];
+        
+        if ($(".input-cards-id")[index].checked && selectedCurrency.includes(temp.toUpperCase())) {
+            console.log("exist in arraty:")
+            console.log($(".input-cards-id")[index]);
+            console.log($(".input-cards-id")[index]["value"])
+   
+        }   else {
+            $(".input-cards-id")[index].checked = false;
+        //    $((".input-cards-id")[index].parentElement.parentElement).toggleClass("bg-coin");
+        }  
 
+}
 
 
     $("#exampleModal").modal('hide');
@@ -214,88 +210,3 @@ function showReports() {
 init()
 
 
-
-
-
-
-
-/*
-
-
-let selectedCurrency = [];
-function checkedCurrency () {
-    const checked = $(this).val().toUpperCase();
-    if ($(this).is(':checked')) {
-        selectedCurrency.push(checked);
-        if (selectedCurrency.length > 2) {
-            selectedCurrency.forEach((currency, index) =>{
-                const clonedListItem = $("#modalListItem").clone();
-                clonedListItem.find("#spanID").text(currency);
-                $(".list-group").append(clonedListItem);
-
-            })
-            $("#exampleModal").modal();
-          this.checked = false;
-          selectedCurrency.splice(selectedCurrency.length - 1,1);
-          return;
-        }
-    } else {
-      selectedCurrency.splice($.inArray(checked, selectedCurrency),1);
-    }
-    console.log(selectedCurrency)
-
-
-
-   api.getCurrenciesPrice(selectedCurrency[0], selectedCurrency[1], selectedCurrency[2], selectedCurrency[3], selectedCurrency[4]).then((result) => {
-      console.log(result)
-   })
-
-}
-
-
-
-
-
-2)=======================================================================================
-
-function checkedCurrency () {
-    const checked = $(this).val().toUpperCase();
-    if ($(this).is(':checked')) {
-        selectedCurrency.push(checked);
-        if (selectedCurrency.length > 2) {
-
-            $("#exampleModal").modal("show").on("shown.bs.modal", function() {
-                selectedCurrency.forEach((currency, index) =>{
-                    const clonedListItem = $("#modalListItem").clone();
-                    clonedListItem.find("#spanID").text(currency);
-                    $(".list-group").append(clonedListItem);
-
-                })
-
-                $("#modalListItem").remove();
-
-
-              });
-
-            }
-
-
-        //  this.checked = false;
-        //  selectedCurrency.splice(selectedCurrency.length - 1,1);
-          return;
-
-    } else {
-      selectedCurrency.splice($.inArray(checked, selectedCurrency),1);
-    }
-    console.log(selectedCurrency)
-
-
-
-   api.getCurrenciesPrice(selectedCurrency[0], selectedCurrency[1], selectedCurrency[2], selectedCurrency[3], selectedCurrency[4]).then((result) => {
-      console.log(result)
-   })
-
-}
-
-
-*/
