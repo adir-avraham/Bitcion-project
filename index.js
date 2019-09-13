@@ -151,12 +151,33 @@ function openModal() {
         const listItem = $("#listItem").clone()
         listItem.find("span").text(selectedCurrency[i]);
         listItem.find("input").attr("id", `item-${i}`); 
+        listItem.find("input").attr("value", selectedCurrency[i]);
         listItem.find("label").attr("for", `item-${i}`);
+
+        listItem.find("input").on("change", checkedCurrencyInModal)
+
         $("#modalListGroup").append(listItem);
         
     }
     $("#exampleModal").modal();
     
+}
+
+function checkedCurrencyInModal() {
+    const checked = $(this).val().toUpperCase();
+   
+
+    if ($(this).is(':checked')) {
+        selectedCurrency.push(checked);       
+    }
+    else {
+
+        selectedCurrency.splice($.inArray(checked, selectedCurrency), 1);
+    }
+
+  console.log("valto delete", checked)
+  console.log("new array", selectedCurrency)
+
 }
 
 $("#saveBtn").on("click", saveChangesModal)
