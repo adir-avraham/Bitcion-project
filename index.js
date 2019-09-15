@@ -28,8 +28,9 @@ function searchAction() {
 
 
 
-//$("#home").on("click", init)
-$("#reports").on("click", showReports);
+$("#home").on("click", init)
+$("#reports").on("click", liveReportsPage);
+$("#about").on("click", aboutPage);
 
 
 function getCurrenciesNameSymble(currencies) {
@@ -194,8 +195,14 @@ function saveChangesModal() {
 
 
 
-function showReports() {
-    $("#divCoins").html("<h1>adir</h1>")
+function liveReportsPage() {
+    $("#divCoins").html("<h1>live reports page</h1>")
+
+}
+
+
+function aboutPage() {
+    $("#divCoins").html("<h1>about page</h1>")
 
 }
 
