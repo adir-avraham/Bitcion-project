@@ -2,7 +2,7 @@ async function init() {
     api.getCurrencies().then((result) => {
         currencies = result.slice(0, 10)
         getCurrenciesNameSymble(currencies);
-    })
+    }).catch(err => console.error("no data"))
 }
 
 
@@ -18,11 +18,13 @@ function search(searchBy, value, data) {
 
 $("#searchBtn").on("click", searchAction)
 
+
 function searchAction() {
+    const value = $("#searchInput").val();
     api.getCurrencies().then((result) => {
-        currencies = result.slice(0, 10)
-        draw(search("symbol", $("#searchInput").val(), currencies))
-    })
+        currencies = result.slice(0, 10);
+        draw(search("symbol", value, currencies));
+    }).catch(err => console.error("no data"));
 }
 
 
@@ -90,7 +92,6 @@ function searchinfo(currency, event) {
 
 
 
-
         console.log(result)
         drawInfo(image, current_price_usd, current_price_eur, current_price_ils)
 
@@ -98,7 +99,7 @@ function searchinfo(currency, event) {
         console.log(current_price_eur + "EUR")
         console.log(current_price_ils + "ILS")
 
-    })
+    }).catch(err => console.error("no data"))
 
 
 
@@ -133,7 +134,7 @@ function checkedCurrency() {
     
     api.getCurrenciesPrice(selectedCurrency[0], selectedCurrency[1], selectedCurrency[2], selectedCurrency[3], selectedCurrency[4]).then((result) => {
         console.log(result)
-    })
+    }).catch(err => console.error("no data"))
 
 }
 
