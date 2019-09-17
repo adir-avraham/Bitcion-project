@@ -1,10 +1,13 @@
+let state = [];
+
 async function init() {
     spinner("divCoins")
     api.getCurrencies().then((result) => {
-        currencies = result.slice(0, 100)
-        getCurrenciesNameSymble(currencies);
+        currencies = result.slice(0, 10)
+        state = [ ...currencies ];
+        draw(state);
+        clearArray();
     }).catch(err => console.error("no data"))
-
 
 }
 
@@ -28,10 +31,7 @@ $("#searchBtn").on("click", searchAction)
 
 function searchAction() {
     const value = $("#searchInput").val();
-    api.getCurrencies().then((result) => {
-        currencies = result.slice(0, 10);
-        draw(search("symbol", value, currencies));
-    }).catch(err => console.error("no data"));
+        draw(search("symbol", value, state));
 }
 
 
@@ -42,15 +42,9 @@ $("#reports").on("click", liveReportsPage);
 $("#about").on("click", aboutPage);
 
 
-function getCurrenciesNameSymble(currencies) {
-    const currenciesNameSymbol = currencies.map((currency) => {
-        const { name, symbol, id } = currency;
-        return { name, symbol, id };
-    })
-    draw(currenciesNameSymbol);
+function  clearArray() {
     selectedCurrency = [];
 }
-
 
 
 
