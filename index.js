@@ -1,12 +1,19 @@
 async function init() {
+    spinner("divCoins")
     api.getCurrencies().then((result) => {
-        currencies = result.slice(0, 10)
+        currencies = result.slice(0, 100)
         getCurrenciesNameSymble(currencies);
     }).catch(err => console.error("no data"))
+
+
 }
 
 
-
+function spinner(idElement) {
+    const spinner = $("#spinner").clone()
+    spinner.css({ display: "inline-block" });
+    $(`#${idElement}`).append(spinner);
+}
 
 function search(searchBy, value, data) {
     if (!Array.isArray(data) || !searchBy || !value) return data;
@@ -68,11 +75,11 @@ function draw(currenciesNameSymbol) {
         clonedCard.find(".infoBtn").on("click", function (event) {
             searchinfo(event.target.alt.toLowerCase(), event)
         })
-
+        
         clonedCard.find(".collapse").attr("id", `a${currenciesNameSymbol[index].id}`);
-    
+        
         clonedCard.find("label").attr("for", currenciesNameSymbol[index].symbol);
-
+        
         $("#divCoins").append(clonedCard);
     })
 }
@@ -83,7 +90,7 @@ function draw(currenciesNameSymbol) {
 
 function searchinfo(currency, event) {
     const coinCard = event.toElement.parentElement.parentElement;
-
+    spinner("moreInfo");
     api.getCurrencyInfoById(currency).then((result) => {
         
 
@@ -202,6 +209,7 @@ function saveChangesModal() {
 
 
 function liveReportsPage() {
+    spinner()
     api.getCurrenciesPrice(selectedCurrency[0], selectedCurrency[1], selectedCurrency[2], selectedCurrency[3], selectedCurrency[4]).then((result) => {
         console.log(result)
 
