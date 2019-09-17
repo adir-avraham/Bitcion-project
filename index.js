@@ -1,6 +1,7 @@
 let state = [];
 
 async function init() {
+   clearDivCoins()
     spinner("divCoins")
     api.getCurrencies().then((result) => {
         currencies = result.slice(0, 10)
@@ -9,6 +10,10 @@ async function init() {
         clearArray();
     }).catch(err => console.error("no data"))
 
+}
+
+function clearDivCoins() {
+$("#divCoins").empty();
 }
 
 
@@ -50,7 +55,7 @@ function  clearArray() {
 
 
 function draw(currenciesNameSymbol) {
-    $("#divCoins").empty();
+    clearDivCoins()
 
     currenciesNameSymbol.forEach((currency, index, currenciesNameSymbol) => {
         const clonedCard = $("#coinCard").clone();
@@ -220,7 +225,10 @@ function liveReportsPage() {
 
 
 function aboutPage() {
-    $("#divCoins").html("<h1>about page</h1>")
+    clearDivCoins()
+    const cloneCard = $("#aboutContent").clone();
+    cloneCard.css({display: "inline-block"})
+    $("#divCoins").append(cloneCard)
 
 }
 
