@@ -37,10 +37,11 @@ $("#about").on("click", aboutPage);
 
 function getCurrenciesNameSymble(currencies) {
     const currenciesNameSymbol = currencies.map((currency) => {
-        const { name, symbol } = currency;
-        return { name, symbol };
+        const { name, symbol, id } = currency;
+        return { name, symbol, id };
     })
     draw(currenciesNameSymbol);
+    selectedCurrency = [];
 }
 
 
@@ -49,6 +50,7 @@ function getCurrenciesNameSymble(currencies) {
 
 function draw(currenciesNameSymbol) {
     $("#divCoins").empty();
+
     currenciesNameSymbol.forEach((currency, index, currenciesNameSymbol) => {
         const clonedCard = $("#coinCard").clone();
         clonedCard.css({ display: "inline-block" });
@@ -60,14 +62,14 @@ function draw(currenciesNameSymbol) {
         clonedCard.find("input").on("change", checkedCurrency)
         clonedCard.find("input").on("click", checkMaxCurrency)
 
-        clonedCard.find(".infoBtn").attr("alt", currenciesNameSymbol[index].name);
-        clonedCard.find(".infoBtn").attr("data-target", `#a${currenciesNameSymbol[index].name}`);
-        clonedCard.find(".infoBtn").attr("aria-controls", `a${currenciesNameSymbol[index].name}`);
+        clonedCard.find(".infoBtn").attr("alt", currenciesNameSymbol[index].id);
+        clonedCard.find(".infoBtn").attr("data-target", `#a${currenciesNameSymbol[index].id}`);
+        clonedCard.find(".infoBtn").attr("aria-controls", `a${currenciesNameSymbol[index].id}`);
         clonedCard.find(".infoBtn").on("click", function (event) {
             searchinfo(event.target.alt.toLowerCase(), event)
         })
 
-        clonedCard.find(".collapse").attr("id", `a${currenciesNameSymbol[index].name}`);
+        clonedCard.find(".collapse").attr("id", `a${currenciesNameSymbol[index].id}`);
     
         clonedCard.find("label").attr("for", currenciesNameSymbol[index].symbol);
 
@@ -83,7 +85,7 @@ function searchinfo(currency, event) {
     const coinCard = event.toElement.parentElement.parentElement;
 
     api.getCurrencyInfoById(currency).then((result) => {
-
+        
 
         const image = result.image.small;
         const current_price_usd = result.market_data.current_price.usd;
@@ -99,7 +101,7 @@ function searchinfo(currency, event) {
         console.log(current_price_eur + "EUR")
         console.log(current_price_ils + "ILS")
 
-    }).catch(err => console.error("no data"))
+    }).catch(err => noDadaMessage())
 
 
 
@@ -110,14 +112,18 @@ function searchinfo(currency, event) {
         $(coinCard).find("#eur").html(`${current_price_eur} &euro;`);
         $(coinCard).find("#ils").html(`${current_price_ils} &#8362;`);
     }
+
+}
+
+function noDadaMessage() {
+    alert("No data for this coin")
 }
 
 
 
 
 
-
-const selectedCurrency = [];
+let selectedCurrency = [];
 
 function checkedCurrency() {
 
@@ -131,11 +137,10 @@ function checkedCurrency() {
     }
 
     console.log(selectedCurrency)
-    
     api.getCurrenciesPrice(selectedCurrency[0], selectedCurrency[1], selectedCurrency[2], selectedCurrency[3], selectedCurrency[4]).then((result) => {
         console.log(result)
-    }).catch(err => console.error("no data"))
 
+    }).catch(err =>  noDadaMessage())
 }
 
 
@@ -197,8 +202,18 @@ function saveChangesModal() {
 
 
 function liveReportsPage() {
-    $("#divCoins").html("<h1>live reports page</h1>")
+    api.getCurrenciesPrice(selectedCurrency[0], selectedCurrency[1], selectedCurrency[2], selectedCurrency[3], selectedCurrency[4]).then((result) => {
+        console.log(result)
 
+        $("#divCoins").html("<h1>live reports page</h1>")
+        const current_usd_rate = result[selectedCurrency[0]].USD;
+        $("#divCoins").html("<h5>" +  current_usd_rate + "here" +  "</h5>")
+
+
+    }).catch(err => console.error("no data"))
+    
+  
+ 
 }
 
 
