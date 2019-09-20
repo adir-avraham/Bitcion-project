@@ -1,7 +1,7 @@
 let state = [];
 
 async function init() {
-   clearDivCoins()
+   emptyDivCoins()
     spinner("divCoins")
     api.getCurrencies().then((result) => {
         currencies = result.slice(0, 10)
@@ -12,7 +12,7 @@ async function init() {
 
 }
 
-function clearDivCoins() {
+function emptyDivCoins() {
 $("#divCoins").empty();
 }
 
@@ -55,7 +55,7 @@ function  clearArray() {
 
 
 function draw(currenciesNameSymbol) {
-    clearDivCoins()
+    emptyDivCoins()
 
     currenciesNameSymbol.forEach((currency, index, currenciesNameSymbol) => {
         const clonedCard = $("#coinCard").clone();
@@ -142,11 +142,13 @@ function checkedCurrency() {
         selectedCurrency.splice($.inArray(checked, selectedCurrency), 1);
     }
 
-    console.log(selectedCurrency)
-    api.getCurrenciesPrice(selectedCurrency[0], selectedCurrency[1], selectedCurrency[2], selectedCurrency[3], selectedCurrency[4]).then((result) => {
-        console.log(result)
-
-    }).catch(err =>  noDadaMessage())
+     console.log(selectedCurrency)
+    // api.getCurrenciesPrice(selectedCurrency[0], selectedCurrency[1], selectedCurrency[2], selectedCurrency[3], selectedCurrency[4]).then((result) => {
+    //     console.log(result)
+    //     // if (result.Response = "error") {
+    //     //   console.log("No data found")
+    //     // }
+    // }).catch(err =>  noDadaMessage())
 }
 
 
@@ -208,24 +210,61 @@ function saveChangesModal() {
 
 
 function liveReportsPage() {
+    emptyDivCoins()
+    
     spinner()
     api.getCurrenciesPrice(selectedCurrency[0], selectedCurrency[1], selectedCurrency[2], selectedCurrency[3], selectedCurrency[4]).then((result) => {
-        console.log(result)
+     
+        //console.log("current =", current_usd_rate_0)
+        // console.log("result =>",  result)
+  
+        // const current_usd_rate_0 = result[selectedCurrency[0]].USD;
+        // console.log("current =", current_usd_rate_0)
+        // const current_usd_rate_1 = result[selectedCurrency[1]].USD;
+        // const current_usd_rate_2 = result[selectedCurrency[2]].USD;
+        // const current_usd_rate_3 = result[selectedCurrency[3]].USD;
+        // const current_usd_rate_4 = result[selectedCurrency[4]].USD;
 
-        $("#divCoins").html("<h1>live reports page</h1>")
-        const current_usd_rate = result[selectedCurrency[0]].USD;
-        $("#divCoins").html("<h5>" +  current_usd_rate + "here" +  "</h5>")
 
+        
+
+       const cloneCard = $("#chartContainer").clone();
+       cloneCard.css({display: "inline-block"})
+       $("#divCoins").append(cloneCard)
+       //renderChart(current_usd_rate_0, current_usd_rate_1, current_usd_rate_2, current_usd_rate_3, current_usd_rate_4)
+       renderChart()
 
     }).catch(err => console.error("no data"))
-    
+
+
   
  
+}
+function renderChart(current_usd_rate_0, current_usd_rate_1, current_usd_rate_2, current_usd_rate_3, current_usd_rate_4) {
+	var chart = new CanvasJS.Chart("chartContainer", {
+		title:{
+			text: "Converting to USD"              
+		},
+		data: [              
+		{
+			// Change type to "doughnut", "line", "splineArea", etc.
+			type: "column",
+			dataPoints: [
+				{ label: selectedCurrency[0].toLowerCase(),  y: 5 },
+				{ label: selectedCurrency[1], y: 3 },
+				{ label: selectedCurrency[2], y: 10 },
+				{ label: selectedCurrency[3],  y: 1 },
+				{ label: selectedCurrency[4],  y: 20 }
+			]
+		}
+		]
+	});
+	chart.render();
 }
 
 
 function aboutPage() {
-    clearDivCoins()
+    emptyDivCoins()
     const cloneCard = $("#aboutContent").clone();
     cloneCard.css({display: "inline-block"})
     $("#divCoins").append(cloneCard)
