@@ -1,6 +1,6 @@
 let state = [];
 
-async function init() {
+ function init() {
    emptyDivCoins()
     spinner("divCoins")
     api.getCurrencies().then((result) => {
@@ -265,6 +265,7 @@ function renderChart(current_usd_rate_0, current_usd_rate_1, current_usd_rate_2,
 
 function aboutPage() {
     emptyDivCoins()
+    clearArray()
     const cloneCard = $("#aboutContent").clone();
     cloneCard.css({display: "inline-block"})
     $("#divCoins").append(cloneCard)
