@@ -4,31 +4,24 @@ body {
     
 }
 
-.bg-coin {
-    background-image: url("./Images/round-seal-sticker-md.png");
-    background-size: cover;
-
-
-
+/* .bg-coin {
+    background: #12235F;   
+    border-radius: 6px;
+    color: white;
+    opacity: 0.9;
 }
+
+.bg-coin:hover {
+    border-radius: 6px;
+    transition: 500ms;
+    opacity: 1;
+} */
+
 
 .bg-silver-coin {
-    background-image: url("./Images/thumbs-up-gold-coin-th.png");
-    background-size: cover;
-
+    background:#B7B5CB;
 }
 
-
-
-.infoBtn {
-    opacity: 1;
-    cursor: pointer;
-    width: 5rem;
-}
-
-.infoBtn:hover {
-    opacity: 0.8;
-}
 
 .parallax1 {
     /* The image used */
@@ -49,6 +42,7 @@ body {
   .parallax2 {
     /* The image used */
     background-image: url("./Images/header-pic.jpg");
+    transition: 2000ms;
   
     /* Set a specific height */
     height: 100%;
@@ -59,4 +53,12 @@ body {
     background-position: cover;
     background-repeat: no-repeat;
     background-size: 100% 56%;
-  }
+
+}
+
+
+
+
+
+
+
