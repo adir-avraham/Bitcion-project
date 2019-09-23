@@ -24,6 +24,9 @@ $("#divCoins").empty();
 
 function spinner(idElement) {
     const spinner = $("#spinner").clone();
+    if (idElement === "divCoins" ) {
+    spinner.css({width: "7rem", height: "7rem"})   
+    }
     spinner.css({ display: "inline-block" });
     if ($(`#${idElement}`).find("#spinner").length > 0 ) {
         $(`#${idElement}`).find("#spinner").show()
