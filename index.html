@@ -3,17 +3,34 @@
 
 <head>
     <title>Currencies</title>
-    <link rel="stylesheet" href="./bootstrap.css">
-    <link rel="stylesheet" href="./mycss.css">
+    <link rel="stylesheet" href="./style/bootstrap.css">
+    <link rel="stylesheet" href="./style/mycss.css">
+    <meta name="viewport" content="width=device-width" , initial-scal-="1.0">
 </head>
-
 <body>
-
-    <div class="jumbotron text-left text-white parallax2 mb-0">
-        <div class="container">
-            <h1 class="display-4">Currencies</h1>
+    <!-- Header -->
+    <div id="carouselExampleInterval" class="carousel slide" data-ride="carousel">
+        <div class="carousel-inner" style="height: 220px">
+            <div class="carousel-item tran" data-interval="7000">
+                <img style="height: 320px" src="./pic/ON40S50.jpg" class="d-block w-100" alt="image">
+            </div>
+            <div class="carousel-item tran" data-interval="7000">
+                <img style="height: 420px" src="./pic/53112.jpg" class="d-block w-100" alt="image">
+            </div>
+            <div class="carousel-item active tran" data-interval="7000">
+                <img style="height: 350px" src="./pic/282147-P66HQK-971.jpg" class="d-block w-100" alt="image">
+            </div>
         </div>
+        <a class="carousel-control-prev" href="#carouselExampleInterval" role="button" data-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+        </a>
+        <a class="carousel-control-next" href="#carouselExampleInterval" role="button" data-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+        </a>
     </div>
+    <!-- Navbaer -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggleExternalContent"
             aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -34,15 +51,18 @@
             <form class="form-inline my-2 my-lg-0">
                 <input id="searchInput" class="form-control mr-sm-2 col-6" type="search" placeholder="Search by code"
                     aria-label="Search">
-                <button id="searchBtn" class="btn btn-outline-success my-2 my-sm-0" type="button">Search</button>
+                <button id="searchBtn" class="btn btn-outline-success my-2 my-sm-0" type="button">Search <i
+                        class="fas fa-search"></i></button>
             </form>
         </div>
     </nav>
 
+    <!-- Main -->
     <div id="divCoins" class="row d-flex justify-content-around parallax1 m-0">
 
     </div>
 
+    <!-- Card -->
     <div id="coinCard" class="bg-coin card m-3" style="width: 14rem; height: 18rem;display: none">
         <div class="card-body">
             <div class="row justify-content-between m-1">
@@ -54,16 +74,11 @@
             </div>
 
             <div class="form-group mb-1">
-
-                <div id="name" class="card-text">
-
-                </div>
-
+                <div id="name" class="card-text"> </div>
             </div>
 
-            <button type="button" class="btn btn-success infoBtn mb-2" data-toggle="collapse" data-target="#moreInfo"
-                aria-expanded="false" aria-controls="moreInfo">
-                More info</button>
+            <button type="button" class="btn btn-info infoBtn mb-2" data-toggle="collapse" data-target="#moreInfo"
+            aria-expanded="false" aria-controls="moreInfo">More info</button>
 
             <div class="collapse" id="moreInfo">
                 <div id="usd"></div>
@@ -74,11 +89,8 @@
         </div>
     </div>
 
-
-
-
     <!-- Modal -->
-    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    <div class="modal fade" id="modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
         aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
@@ -118,68 +130,64 @@
         <span class="sr-only">Loading...</span>
     </div>
 
-
-
     <!-- Live reports -->
     <div id="chartContainer" style="height: 350px; width: 840px; margin-top: 1%; display: none">
 
-        <!-- about -->
-        <div id="aboutContent" class="card mb-3 font-size" style="max-width: 940px; height: 100% ;margin-top: 1% ;display: none;">
-            <div class="row no-gutters">
-                <div class="col-md-4">
-                    <img src="./Images/profile-pic.jpg" class="card-img" alt="...">
-                    <ul class="list-group list-group-flush">
-                        <li class="list-group-item">Adir Avraham</li>
-                        <li class="list-group-item">Web developer</li>
-                        <li class="list-group-item">Tel: 052-3180005</li>
-                    </ul>
-                    <div class="card-body">
-                        <a href="mailto:adir.avraham@gmail.com" class="card-link"><span class="far fa-envelope icon-size"></span> E-mail</a>
-                        <a href="https://github.com/" target="_blank" class="card-link"><span class=" fab fa-github icon-size"></span> GitHub</a>
-                    </div>
+    </div>
+    <!-- about -->
+    <div id="aboutContent" class="card mb-3 font-size"
+        style="max-width: 940px; height: 100% ;margin-top: 1% ;display: none;">
+        <div class="row no-gutters">
+            <div class="col-md-4">
+                <img src="./pic/profile-pic.jpg" class="card-img" alt="...">
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item">👨‍💻 Adir Avraham</li>
+                    <li class="list-group-item">💻 Web developer</li>
+                    <li class="list-group-item">📱 052-3180005</li>
+                </ul>
+                <div class="card-body">
+                    <a href="mailto:adir.avraham@gmail.com" class="card-link"><span
+                            class="far fa-envelope icon-size"></span> E-mail</a>
+                    <a href="https://github.com/" target="_blank" class="card-link"><span
+                            class=" fab fa-github icon-size"></span> GitHub</a>
                 </div>
-
-                <div class="col-md-8">
-                    <div class="card-body">
-                        <h5 class="card-title">About</h5>
-                        <p class="card-text">
-                            My name is Adir Avraham. I have a bachelor’s degree in law. In high school I majored in
-                            computer science, and always loved computers. After made my dream come true as a lawyer, I
-                            am now making another dream of mine come true as being a web developer.
-                        </p>
-                        <p class="card-text">
-                            I am currently a student at John Bryce College, completing a course in Web development. In
-                            this course I learn and practice skills and tools as a Full Stack Web Developer.
-                        </p>
-                        <p class="card-text">
-                            This project is a Single Page Application foundation, dealing with API's currencies, which
-                            is a highly popular subject nowadays. In order to provide useful information, I used three
-                            different external API's, in order to give the users access to the relevant information of
-                            more than 5,500 currencies, in the most efficient and friendly way.
-                        </p>
-                        <p class="card-text">
-                            In this project, I had to demonstrate knowledge in HTML, CSS, and JavaScript, using new
-                            HTML5 tags, CSS3 media queries and advanced selectors, as well as Dynamic page layouts,
-                            Bootstrap and Flex. In JavaScript, I used Objects, Promises, jQuery, Events, Ajax, etc.
-                        </p>
-                        <p class="card-text">
-                            Happy Browsing!
-                        </p>
-                    </div>
+            </div>
+            <div class="col-md-8">
+                <div class="card-body">
+                    <h5 class="card-title">About</h5>
+                    <p class="card-text">
+                        My name is Adir Avraham. I have a bachelor’s degree in Law. In high school I majored in computer
+                        science, and always loved IT. After I’ve achieved my dream of becoming a lawyer, I am now in the
+                        process of fulfilling another dream of becoming a Web Developer.
+                    </p>
+                    <p class="card-text">
+                        I am currently studying at John Bryce College, completing a course in Web development. In this
+                        course I learn and practice skills and tools as a Full Stack Web Developer.
+                    </p>
+                    <p class="card-text">
+                        This project is a Single Page Application foundation, dealing with API's currencies, which is
+                        currently a highly popular subject. In order to provide useful information, I used three
+                        different external API's in order to give the users access to the relevant information of more
+                        than 5,500 currencies in the most efficient and friendly way.
+                    </p>
+                    <p class="card-text">
+                        In this project, I had to demonstrate knowledge in HTML, CSS, and JavaScript, using new HTML5
+                        tags, CSS3 media queries and advanced selectors, as well as Dynamic page layouts, Bootstrap and
+                        Flex. In JavaScript, I used Objects, Promises, jQuery, Events, Ajax, etc.
+                    </p>
+                    <p class="card-text">
+                        Happy Browsing!
+                    </p>
                 </div>
             </div>
         </div>
+    </div>
 
-
-        <script src="./canvasjs.js"></script>
-
-
-        <script src="./icon.js"></script>
-        <script src="./jquery.min.js"></script>
-        <script src="./bootstrap.min.js"></script>
-        <!-- <script src="./jquery.js"></script> -->
-        <script src="./service.js"></script>
-        <script src="./index.js"></script>
+    <script src="./libs/canvasjs.js"></script>
+    <script src="./libs/icon.js"></script>
+    <script src="./libs/jquery.min.js"></script>
+    <script src="./libs/bootstrap.min.js"></script>
+    <script src="./js/service.js"></script>
+    <script src="./js/index.js"></script>
 </body>
-
 </html>

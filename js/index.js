@@ -1,17 +1,20 @@
 let state = [];
+let selectedCurrency = [];
 
-
+$(document).ready(function() {
+    init()
+});
+    
 
 function init() {
-    emptyDivCoins()
-    spinner("divCoins")
+    emptyDivCoins();
+    spinner("divCoins");
     api.getCurrencies().then((result) => {
-        currencies = result.slice(0, 15)
+        currencies = result.slice(0, 15);
         state = [ ...currencies ];
         draw(state);
         clearArray();
-    }).catch(err => console.error("no data"))
-
+    }).catch(err => console.error("no data"));
 }
 
 
@@ -25,32 +28,24 @@ $("#divCoins").empty();
 function spinner(idElement) {
     const spinner = $("#spinner").clone();
     if (idElement === "divCoins" ) {
-    spinner.css({width: "7rem", height: "7rem"})   
+        spinner.css({width: "7rem", height: "7rem"})   
     }
     spinner.css({ display: "inline-block" });
     if ($(`#${idElement}`).find("#spinner").length > 0 ) {
-        $(`#${idElement}`).find("#spinner").show()
+        $(`#${idElement}`).find("#spinner").show();
     } else {
-    $(`#${idElement}`).append(spinner);
+        $(`#${idElement}`).append(spinner);
     }
 }
 
 
 
 function search(searchBy, value, data) {
-    if (!Array.isArray(data) || !searchBy || !value) return data;
+    if (!value) return data;
     return data.filter((currency) => {
-        return currency[searchBy] === (value.toLowerCase())
+        return currency[searchBy] === (value.toLowerCase());
     })
 }
-
-
-
-
-$("#searchBtn").on("click", searchAction)
-
-
-
 
 function searchAction() {
     const value = $("#searchInput").val();
@@ -60,47 +55,45 @@ function searchAction() {
 
 
 
-
-$("#home").on("click", init)
+$("#home").on("click", init);
 $("#reports").on("click", liveReportsPage);
 $("#about").on("click", aboutPage);
+$("#searchBtn").on("click", searchAction);
 
 
 
 
-function  clearArray() {
+function clearArray() {
     selectedCurrency = [];
 }
 
 
 
 function draw(currenciesArray) {
-    emptyDivCoins()
-
-    currenciesArray.forEach((currency) => {
+    emptyDivCoins();
+    
+    currenciesArray.forEach((currency, index) => {
         const clonedCard = $("#coinCard").clone();
+        clonedCard.attr("id", `card_${index}`);
         clonedCard.css({ display: "inline-block" });
         clonedCard.find("#name").html(currency.name);
         clonedCard.find("h5").html(currency.symbol.toUpperCase());
-
+        
         clonedCard.find("input").attr("id", currency.symbol);
         clonedCard.find("input").attr("value", currency.symbol);
-        clonedCard.find("input").on("change", checkedCurrency)
-        clonedCard.find("input").on("click", checkMaxCurrency)
-
+        clonedCard.find("input").on("change", checkedCurrency);
+        clonedCard.find("input").on("click", checkMaxCurrency);
+        
         clonedCard.find(".infoBtn").attr("id", currency.id);
         clonedCard.find(".infoBtn").attr("data-target", `#a${currency.id}`);
         clonedCard.find(".infoBtn").attr("aria-controls", `a${currency.id}`);
         clonedCard.find(".infoBtn").on("click", function (event) {
-            searchinfo(event.target.id.toLowerCase(), event)
-            //optional =>>>>>   $(this).parents(".bg-coin").toggleClass("bg-silver-coin");   
-        })
-        
+            searchinfo(event.target.id.toLowerCase(), event)  
+        });
         clonedCard.find(".collapse").attr("id", `a${currency.id}`);
-        
         clonedCard.find("label").attr("for", currency.symbol);
         
-
+        
         $("#divCoins").append(clonedCard);
     })
 }
@@ -108,8 +101,7 @@ function draw(currenciesArray) {
 
 
 
-function searchinfo(currency, event) {
-    
+function searchinfo(currency, event) {   
     if (!$(`#a${currency}`).hasClass("show")) {
         spinner(`a${currency}`); 
     }
@@ -123,10 +115,10 @@ function searchinfo(currency, event) {
         const current_price_eur = result.market_data.current_price.eur;
         const current_price_ils = result.market_data.current_price.ils;
         
-        drawInfo(image, current_price_usd, current_price_eur, current_price_ils, coinCard )
-        $("#spinner").remove()    
-  
-    }).catch(err => noDadaMessage())   
+        drawInfo(image, current_price_usd, current_price_eur, current_price_ils, coinCard);
+        $("#spinner").remove(); 
+        
+    }).catch(err => noDadaMessage());   
 }
 
 
@@ -151,7 +143,6 @@ function noDadaMessage() {
 
 
 
-let selectedCurrency = [];
 
 function checkedCurrency() {   
     const checked = $(this).val().toUpperCase();
@@ -161,19 +152,13 @@ function checkedCurrency() {
     else {
         selectedCurrency.splice($.inArray(checked, selectedCurrency), 1);
     }
- 
-     console.log(selectedCurrency)
-
-    api.getCurrenciesPrice(selectedCurrency[0], selectedCurrency[1], selectedCurrency[2], selectedCurrency[3], selectedCurrency[4]).then((result) => {
-        console.log(result)
-    }).catch(err =>  noDadaMessage())
 }
 
 
 
 function checkMaxCurrency() {
-    if ($(this).is(':checked') && selectedCurrency.length === 2) {
-        openModal()
+    if ($(this).is(':checked') && selectedCurrency.length === 5) {
+        openModal();
         return false;
     }
 }
@@ -182,39 +167,25 @@ function checkMaxCurrency() {
 function openModal() {
     $("#modalListGroup").empty();
     selectedCurrency.forEach((currency, index) => {
-        const listItem = $("#listItem").clone()
+        const listItem = $("#listItem").clone();
         listItem.css({ visibility: "visible" });
         listItem.find("span").text(currency);
         listItem.find("input").attr("id", `item-${index}`); 
         listItem.find("input").attr("value", currency);
         listItem.find("label").attr("for", `item-${index}`);
-///change here as a test  "checkedCurrency" insted of "checkedCurrencyInModal"
-        listItem.find("input").on("change", checkedCurrency)
+        listItem.find("input").on("change", checkedCurrency);
         $("#modalListGroup").append(listItem);   
     })
-    $("#exampleModal").modal();
+    $("#modal").modal();
 }
 
 
 
-function checkedCurrencyInModal() {
-    const checked = $(this).val().toUpperCase();
-    if ($(this).is(':checked')) {
-        selectedCurrency.push(checked);       
-    }
-    else {
-        selectedCurrency.splice($.inArray(checked, selectedCurrency), 1);
-    }
-}
-
-
-
-$("#saveBtn").on("click", saveChangesModal)
+$("#saveBtn").on("click", saveChangesModal);
 
 
 
 function saveChangesModal() {
-
     for (index=0; index <= $(".input-cards-id").length - 2; index++ ) {
         const temp = $(".input-cards-id")[index]["value"];
         const input = $(".input-cards-id")[index];
@@ -224,48 +195,38 @@ function saveChangesModal() {
             input.checked = false;            
         }  
     }
-
-    $("#exampleModal").modal('hide');
-
+    $("#modal").modal('hide');
 }
 
 
 
-function liveReportsPage() {
-
-        emptyDivCoins();
-        spinner("divCoins");
-    
-        api.getCurrenciesPrice(selectedCurrency[0], selectedCurrency[1], selectedCurrency[2], selectedCurrency[3], selectedCurrency[4]).then((result) => {
-        
+function liveReportsPage() {  
+    emptyDivCoins();
+    spinner("divCoins");  
+    api.getCurrenciesPrice(selectedCurrency[0], selectedCurrency[1], selectedCurrency[2], selectedCurrency[3], selectedCurrency[4]).then((result) => {
         const current_usd_rate_0 = result[selectedCurrency[0]] ? result[selectedCurrency[0]].USD : 0;
-        const current_usd_rate_1 = result[selectedCurrency[1]] ? result[selectedCurrency[1]].USD : 0;
-        const current_usd_rate_2 = result[selectedCurrency[2]] ? result[selectedCurrency[2]].USD : 0;
-        const current_usd_rate_3 = result[selectedCurrency[3]] ? result[selectedCurrency[3]].USD : 0;
-        const current_usd_rate_4 = result[selectedCurrency[4]] ? result[selectedCurrency[4]].USD : 0;
-        
-        const cloneCard = $("#chartContainer").clone();
-        cloneCard.css({display: "inline-block"})
-        $("#divCoins").append(cloneCard)
-        
-        renderChart(current_usd_rate_0, current_usd_rate_1, current_usd_rate_2, current_usd_rate_3, current_usd_rate_4)
-        
-        $("#spinner").remove() 
-        
-    }).catch(err => noDadaMessage()) 
-
+      const current_usd_rate_1 = result[selectedCurrency[1]] ? result[selectedCurrency[1]].USD : 0;
+      const current_usd_rate_2 = result[selectedCurrency[2]] ? result[selectedCurrency[2]].USD : 0;
+      const current_usd_rate_3 = result[selectedCurrency[3]] ? result[selectedCurrency[3]].USD : 0;
+      const current_usd_rate_4 = result[selectedCurrency[4]] ? result[selectedCurrency[4]].USD : 0;
+      const cloneCard = $("#chartContainer").clone();
+      cloneCard.css({display: "inline-block"});
+      $("#divCoins").append(cloneCard);
+      renderChart(current_usd_rate_0, current_usd_rate_1, current_usd_rate_2, current_usd_rate_3, current_usd_rate_4);
+      $("#spinner").remove();
+    }).catch(err => noDadaMessage());   
 }
 
 
 
 function renderChart(current_usd_rate_0, current_usd_rate_1, current_usd_rate_2, current_usd_rate_3, current_usd_rate_4) {
-	var chart = new CanvasJS.Chart("chartContainer", {
+    const chart = new CanvasJS.Chart("chartContainer", {
 		title:{
-			text: "Converting to USD"              
+            text: "Converting to USD"              
 		},
 		data: [              
 		{
-			// Change type to "doughnut", "line", "splineArea", etc.
+            // Change type to "doughnut", "line", "splineArea", etc.
 			type: "column",
 			dataPoints: [
 				{ label: selectedCurrency[0], y: current_usd_rate_0 },
@@ -275,29 +236,23 @@ function renderChart(current_usd_rate_0, current_usd_rate_1, current_usd_rate_2,
 				{ label: selectedCurrency[4], y: current_usd_rate_4 }
 			]
 		}
-		]
-	});
+    ]
+});
     chart.render();
 }
 
 
 
 function aboutPage() {
-    emptyDivCoins()
-    clearArray()
+    emptyDivCoins();
+    clearArray();
     const cloneCard = $("#aboutContent").clone();
-    cloneCard.css({display: "inline-block"})
-    $("#divCoins").append(cloneCard)
+    cloneCard.css({display: "inline-block"});
+    $("#divCoins").append(cloneCard);
 }
 
 
-setInterval(function(){
-
-    
-}, 1000);
 
 
-
-init()
 
 

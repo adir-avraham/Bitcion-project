@@ -5,7 +5,7 @@ body {
 }
 
 .bg-coin {
-    background: #12235F;   
+    background-color: darkslateblue;
     border-radius: 6px;
     color: white;
     opacity: 0.9;
@@ -25,7 +25,7 @@ body {
 
 .parallax1 {
     /* The image used */
-    background-image: url("./Images/background-pic.jpg");
+    background-image: url("../pic/517886-PJ99BZ-484.jpg");
   
     /* Set a specific height */
     height: 100%;
@@ -39,21 +39,8 @@ body {
   }
 
 
-  .parallax2 {
-    /* The image used */
-    background-image: url("./Images/header-pic.jpg");
-    transition: 2000ms;
-  
-    /* Set a specific height */
-    height: 100%;
-    min-height: 260px;
-  
-    /* Create the parallax scrolling effect */
-    background-attachment: fixed;
-    background-position: cover;
-    background-repeat: no-repeat;
-    background-size: 100% 56%;
-
+.tran {
+    transition: 3000ms;
 }
 
 
@@ -65,4 +52,5 @@ body {
 .font-size {
     font-size: 0.9rem;
 }
+
 
