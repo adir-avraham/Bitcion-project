@@ -41,7 +41,7 @@ function spinner(idElement) {
 
 
 function search(searchBy, value, data) {
-    if (!value) return data;
+    if (!Array.isArray(data) || !value) return data;
     return data.filter((currency) => {
         return currency[searchBy] === (value.toLowerCase());
     })
@@ -116,7 +116,7 @@ function searchinfo(currency, event) {
         const current_price_ils = result.market_data.current_price.ils;
         
         drawInfo(image, current_price_usd, current_price_eur, current_price_ils, coinCard);
-        $("#spinner").remove(); 
+        $(`#a${currency}`).find("#spinner").remove(); 
         
     }).catch(err => noDadaMessage());   
 }
