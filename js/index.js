@@ -10,7 +10,7 @@ function init() {
     emptyDivCoins();
     spinner("divCoins");
     api.getCurrencies().then((result) => {
-        currencies = result.slice(0, 15);
+        currencies = result.slice(0, 100);
         state = [ ...currencies ];
         draw(state);
         clearArray();
