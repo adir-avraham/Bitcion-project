@@ -8,17 +8,15 @@
     <meta name="viewport" content="width=device-width" , initial-scal-="1.0">
 </head>
 <body>
+    
     <!-- Header -->
     <div id="carouselExampleInterval" class="carousel slide" data-ride="carousel">
         <div class="carousel-inner" style="height: 220px">
             <div class="carousel-item active tran" data-interval="7000">
-                <img style="height: 220px" src="./pic/header-pic1.jpg" class="d-block w-100" alt="image">
+                <img style="height: 250px" src="./pic/header-pic2.jpg" class="d-block w-100" alt="image">
             </div>
             <div class="carousel-item tran" data-interval="7000">
-                <img style="height: 280px" src="./pic/header-pic2.jpg" class="d-block w-100" alt="image">
-            </div>
-            <div class="carousel-item tran" data-interval="7000">
-                <img style="height: 220px" src="./pic/header-pic3.jpg" class="d-block w-100" alt="image">
+                <img style="height: 280px" src="./pic/header-pic3.jpg" class="d-block w-100" alt="image">
             </div>
         </div>
         <a class="carousel-control-prev" href="#carouselExampleInterval" role="button" data-slide="prev">
@@ -30,8 +28,9 @@
             <span class="sr-only">Next</span>
         </a>
     </div>
-    <!-- Navbaer -->
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+
+<!-- Navbaer -->
+<nav class=" navbar navbar-expand-lg navbar-dark bg-dark sticky-top ">
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggleExternalContent"
             aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -49,9 +48,9 @@
                 </li>
             </ul>
             <form class="form-inline my-2 my-lg-0">
-                <input id="searchInput" class="form-control mr-sm-2 col-6" type="search" placeholder="Search by code"
+                <input id="searchInput" class="form-control mr-sm-2 col-6" type="search" placeholder="Search by code.."
                     aria-label="Search">
-                <button id="searchBtn" class="btn btn-outline-success my-2 my-sm-0" type="button">Search <i
+                <button id="searchBtn" class="btn btn-outline-primary my-2 my-sm-0" type="button">Search <i
                         class="fas fa-search"></i></button>
             </form>
         </div>
@@ -63,7 +62,7 @@
     </div>
 
     <!-- Card -->
-    <div id="coinCard" class="bg-coin card m-3" style="width: 14rem; height: 18rem;display: none">
+    <div id="coinCard" class="bg-coin card m-3 shadow-lg" style="width: 14rem; height: 18rem;display: none">
         <div class="card-body">
             <div class="row justify-content-between m-1">
                 <h5 class="card-title"></h5>
@@ -77,7 +76,7 @@
                 <div id="name" class="card-text"> </div>
             </div>
 
-            <button type="button" class="btn btn-info infoBtn mb-2" data-toggle="collapse" data-target="#moreInfo"
+            <button type="button" class="btn btn-primary infoBtn mb-2" data-toggle="collapse" data-target="#moreInfo"
             aria-expanded="false" aria-controls="moreInfo">More info</button>
 
             <div class="collapse" id="moreInfo">
@@ -138,8 +137,8 @@
     <div id="aboutContent" class="card mb-3 font-size"
         style="max-width: 940px; height: 100% ;margin-top: 1% ;display: none;">
         <div class="row no-gutters">
-            <div class="col-md-4">
-                <img src="./pic/profile-pic.jpg" class="card-img" alt="...">
+            <div class="col-md-3">
+                <img src="./pic/profile-pic.jpg" class="card-img profile-img" height="" alt="...">
                 <ul class="list-group list-group-flush">
                     <li class="list-group-item">👨‍💻 Adir Avraham</li>
                     <li class="list-group-item">💻 Web developer</li>
@@ -152,7 +151,7 @@
                             class=" fab fa-github icon-size"></span> GitHub</a>
                 </div>
             </div>
-            <div class="col-md-8">
+            <div class="col-md-9">
                 <div class="card-body">
                     <h5 class="card-title">About</h5>
                     <p class="card-text">
