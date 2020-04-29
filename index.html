@@ -9,14 +9,41 @@
 </head>
 <body>
     
-    <!-- Header -->
-    <div id="carouselExampleInterval" class="carousel slide" data-ride="carousel">
-        <div class="carousel-inner" style="height: 220px">
-            <div class="carousel-item active tran" data-interval="7000">
-                <img style="height: 220px" src="./pic/header-pic2.jpg" class="d-block w-100" alt="image">
+    <!-- Navbaer -->
+    <nav class=" navbar navbar-expand-lg navbar-dark bg-dark sticky-top ">
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggleExternalContent"
+                aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarToggleExternalContent">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item">
+                        <a id="home" class="nav-link" href="#">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a id="reports" class="nav-link" href="#">Live Reports</a>
+                    </li>
+                    <li class="nav-item">
+                        <a id="about" class="nav-link" href="#">About</a>
+                    </li>
+                </ul>
+                <form class="form-inline my-2 my-lg-0">
+                    <input id="searchInput" class="form-control mr-sm-2 col-6" type="search" placeholder="Search by code.."
+                        aria-label="Search">
+                    <button id="searchBtn" class="btn btn-outline-primary my-2 my-sm-0" type="button">Search <i
+                            class="fas fa-search"></i></button>
+                </form>
             </div>
-            <div class="carousel-item tran" data-interval="7000">
-                <img style="height: 280px" src="./pic/header-pic3.jpg" class="d-block w-100" alt="image">
+        </nav>
+
+    <!-- Carousel -->
+    <div id="carouselExampleInterval" class="carousel slide d-none d-lg-block d-xl-none d-xl-block" data-ride="carousel">
+        <div class="carousel-inner" style="height: 425px">
+            <div class="carousel-item tran" data-interval="6000">
+                <img style="height: 425px" src="./pic/bitcoin-black.jpg" class="d-block w-100" alt="image">
+            </div>
+            <div class="carousel-item active tran" data-interval="6000">
+                <img style="height: 525px" src="./pic/bitcoin-main.jpg" class="d-block w-100" alt="image">
             </div>
         </div>
         <a class="carousel-control-prev" href="#carouselExampleInterval" role="button" data-slide="prev">
@@ -28,33 +55,16 @@
             <span class="sr-only">Next</span>
         </a>
     </div>
-
-<!-- Navbaer -->
-<nav class=" navbar navbar-expand-lg navbar-dark bg-dark sticky-top ">
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggleExternalContent"
-            aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarToggleExternalContent">
-            <ul class="navbar-nav mr-auto">
-                <li class="nav-item">
-                    <a id="home" class="nav-link" href="#">Home</a>
-                </li>
-                <li class="nav-item">
-                    <a id="reports" class="nav-link" href="#">Live Reports</a>
-                </li>
-                <li class="nav-item">
-                    <a id="about" class="nav-link" href="#">About</a>
-                </li>
-            </ul>
-            <form class="form-inline my-2 my-lg-0">
-                <input id="searchInput" class="form-control mr-sm-2 col-6" type="search" placeholder="Search by code.."
-                    aria-label="Search">
-                <button id="searchBtn" class="btn btn-outline-primary my-2 my-sm-0" type="button">Search <i
-                        class="fas fa-search"></i></button>
-            </form>
+    <div id="carouselExampleInterval" class="carousel slide d-block d-sm-none" data-ride="carousel">
+        <div class="carousel-inner" style="height: 425px">
+            <div class="carousel-item tran" data-interval="6000">
+                <img style="height: 425px" src="./pic/bitcoin-mobile2.jpg" class="d-block w-100" alt="image">
+            </div>
+            <div class="carousel-item active tran" data-interval="6000">
+                <img style="height: 425px" src="./pic/crypto-mobile.jpg" class="d-block w-100" alt="image">
+            </div>
         </div>
-    </nav>
+    </div>
 
     <!-- Main -->
     <div id="divCoins" class="row d-flex justify-content-around parallax1 m-0">
@@ -62,24 +72,16 @@
     </div>
 
     <!-- Card -->
-    <div id="coinCard" class="bg-coin card m-3 shadow-lg" style="width: 14rem; height: 18rem;display: none">
-        <div class="card-body">
-            <div class="row justify-content-between m-1">
-                <h5 class="card-title"></h5>
-                <div class="custom-control custom-switch">
-                    <input type="checkbox" class="custom-control-input input-cards-id" id="customSwitch1">
-                    <label class="custom-control-label" for="customSwitch1"></label>
-                </div>
+    <div id="coinCard" class="bg-coin m-3 text-center" style="width: 18rem; height: 18rem;display: none">
+        <div class="card-body"> 
+            <div class="custom-control custom-switch text-center">
+                <input type="checkbox" class="custom-control-input input-cards-id" id="customSwitch1">
+                <label class="custom-control-label" for="customSwitch1"></label>
             </div>
-
-            <div class="form-group mb-1">
-                <div id="name" class="card-text"> </div>
-            </div>
-
-            <button type="button" class="btn btn-primary infoBtn mb-2" data-toggle="collapse" data-target="#moreInfo"
+            <h5 class="card-title text-center"></h5>
+            <button id="name" type="button" class="btn btn-primary btn-sm infoBtn mb-2" data-toggle="collapse" data-target="#moreInfo"
             aria-expanded="false" aria-controls="moreInfo">More info</button>
-
-            <div class="collapse" id="moreInfo">
+            <div class="collapse text-center" id="moreInfo">
                 <div id="usd"></div>
                 <div id="eur"></div>
                 <div id="ils"></div>
@@ -87,6 +89,7 @@
             </div>
         </div>
     </div>
+</div>
 
     <!-- Modal -->
     <div class="modal fade" id="modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
@@ -130,12 +133,12 @@
     </div>
 
     <!-- Live reports -->
-    <div id="chartContainer" style="height: 350px; width: 840px; margin-top: 1%; display: none">
+    <div id="chartContainer" style="height: 350px; width: 840px; margin-top: 3%; display: none">
 
     </div>
     <!-- about -->
     <div id="aboutContent" class="card mb-3 font-size"
-        style="max-width: 940px; height: 100% ;margin-top: 1% ;display: none;">
+        style="max-width: 940px; height: 100% ;margin-top: 3% ;display: none;">
         <div class="row no-gutters">
             <div class="col-md-3">
                 <img src="./pic/profile-pic.jpg" class="card-img profile-img" height="" alt="...">
@@ -145,10 +148,10 @@
                     <li class="list-group-item">📱 052-3180005</li>
                 </ul>
                 <div class="card-body">
-                    <a href="mailto:adir.avraham@gmail.com" class="card-link"><span
-                            class="far fa-envelope icon-size"></span> E-mail</a>
-                    <a href="https://github.com/" target="_blank" class="card-link"><span
-                            class=" fab fa-github icon-size"></span> GitHub</a>
+                    <a href="mailto:adir.avraham@gmail.com" class="card-link">
+                        <span class="far fa-envelope icon-size"></span> E-mail</a>
+                    <a href="https://github.com/" target="_blank" class="card-link">
+                        <span class=" fab fa-github icon-size"></span> GitHub</a>
                 </div>
             </div>
             <div class="col-md-9">
@@ -156,23 +159,22 @@
                     <h5 class="card-title">About</h5>
                     <p class="card-text">
                         My name is Adir Avraham. I have a bachelor’s degree in Law. In high school I majored in computer
-                        science, and always loved IT. After I’ve achieved my dream of becoming a lawyer, I am now in the
-                        process of fulfilling another dream of becoming a Web Developer.
+                        science, and always loved IT.
                     </p>
                     <p class="card-text">
-                        I am currently studying at John Bryce College, completing a course in Web development. In this
-                        course I learn and practice skills and tools as a Full Stack Web Developer.
+                        I am currently studying at John Bryce College, completing a course in Web development. During this
+                        course I practice skills as a Full Stack Web Developer.
                     </p>
                     <p class="card-text">
-                        This project is a Single Page Application foundation, dealing with API's currencies, which is
-                        currently a highly popular subject. In order to provide useful information, I used three
-                        different external API's in order to give the users access to the relevant information of more
+                        About the project: This project is a Single Page Application foundation about crypto currencies, which is
+                        currently a highly popular subject. In order to the provide useful information, I used three
+                        different external API's which let the users access to relevant information of more
                         than 5,500 currencies in the most efficient and friendly way.
                     </p>
                     <p class="card-text">
                         In this project, I had to demonstrate knowledge in HTML, CSS, and JavaScript, using new HTML5
                         tags, CSS3 media queries and advanced selectors, as well as Dynamic page layouts, Bootstrap and
-                        Flex. In JavaScript, I used Objects, Promises, jQuery, Events, Ajax, etc.
+                        Flex. In JavaScript, I used Objects, jQuery, Events, Ajax, Async await and more.
                     </p>
                     <p class="card-text">
                         Happy Browsing!

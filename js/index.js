@@ -6,22 +6,25 @@ $(document).ready(function() {
 });
     
 
-function init() {
+async function init() {
     emptyDivCoins();
     spinner("divCoins");
-    api.getCurrencies().then((result) => {
+    try {
+        const result = await api.getCurrencies(); 
         currencies = result.slice(0, 100);
         state = [ ...currencies ];
         draw(state);
         clearArray();
-    }).catch(err => console.error("no data"));
-}
+    } catch (err) {
+        console.error("no data");
+    }
+};
 
 
 
 function emptyDivCoins() {
 $("#divCoins").empty();
-}
+};
 
 
 
@@ -36,7 +39,7 @@ function spinner(idElement) {
     } else {
         $(`#${idElement}`).append(spinner);
     }
-}
+};
 
 
 
@@ -45,13 +48,13 @@ function search(searchBy, value, data) {
     return data.filter((currency) => {
         return currency[searchBy] === (value.toLowerCase());
     })
-}
+};
 
 function searchAction() {
     const value = $("#searchInput").val();
     draw(search("symbol", value, state));
     $("#searchInput").val("");
-}
+};
 
 
 
@@ -65,7 +68,7 @@ $("#searchBtn").on("click", searchAction);
 
 function clearArray() {
     selectedCurrency = [];
-}
+};
 
 
 
@@ -96,20 +99,19 @@ function draw(currenciesArray) {
         
         $("#divCoins").append(clonedCard);
     })
-}
+};
 
 
 
 
-function searchinfo(currency, event) {   
+async function searchinfo(currency, event) {   
     if (!$(`#a${currency}`).hasClass("show")) {
         spinner(`a${currency}`); 
     }
     
     const coinCard = event.toElement.parentElement.parentElement;
-    
-    api.getCurrencyInfoById(currency).then((result) => {
-        
+    try{
+        const result = await api.getCurrencyInfoById(currency);   
         const image = result.image.small;
         const current_price_usd = result.market_data.current_price.usd;
         const current_price_eur = result.market_data.current_price.eur;
@@ -118,9 +120,11 @@ function searchinfo(currency, event) {
         drawInfo(image, current_price_usd, current_price_eur, current_price_ils, coinCard);
         $(`#a${currency}`).find("#spinner").remove(); 
         
-    }).catch(err => noDadaMessage());   
-}
-
+    } catch(err) {
+        noDadaMessage();   
+        console.log(err.message);
+    } 
+};
 
 
 
@@ -134,13 +138,10 @@ function drawInfo(image, current_price_usd, current_price_eur, current_price_ils
 
 
 
-
 function noDadaMessage() {
     alert("No data");
     $("#spinner").remove();
 }
-
-
 
 
 
@@ -196,26 +197,29 @@ function saveChangesModal() {
         }  
     }
     $("#modal").modal('hide');
-}
+};
 
 
 
-function liveReportsPage() {  
+async function liveReportsPage() {  
     emptyDivCoins();
     spinner("divCoins");  
-    api.getCurrenciesPrice(selectedCurrency[0], selectedCurrency[1], selectedCurrency[2], selectedCurrency[3], selectedCurrency[4]).then((result) => {
+    try {
+        const result = await api.getCurrenciesPrice(selectedCurrency);
         const current_usd_rate_0 = result[selectedCurrency[0]] ? result[selectedCurrency[0]].USD : 0;
-      const current_usd_rate_1 = result[selectedCurrency[1]] ? result[selectedCurrency[1]].USD : 0;
-      const current_usd_rate_2 = result[selectedCurrency[2]] ? result[selectedCurrency[2]].USD : 0;
-      const current_usd_rate_3 = result[selectedCurrency[3]] ? result[selectedCurrency[3]].USD : 0;
-      const current_usd_rate_4 = result[selectedCurrency[4]] ? result[selectedCurrency[4]].USD : 0;
-      const cloneCard = $("#chartContainer").clone();
-      cloneCard.css({display: "inline-block"});
-      $("#divCoins").append(cloneCard);
-      renderChart(current_usd_rate_0, current_usd_rate_1, current_usd_rate_2, current_usd_rate_3, current_usd_rate_4);
-      $("#spinner").remove();
-    }).catch(err => noDadaMessage());   
-}
+        const current_usd_rate_1 = result[selectedCurrency[1]] ? result[selectedCurrency[1]].USD : 0;
+        const current_usd_rate_2 = result[selectedCurrency[2]] ? result[selectedCurrency[2]].USD : 0;
+        const current_usd_rate_3 = result[selectedCurrency[3]] ? result[selectedCurrency[3]].USD : 0;
+        const current_usd_rate_4 = result[selectedCurrency[4]] ? result[selectedCurrency[4]].USD : 0;
+        const cloneCard = $("#chartContainer").clone();
+        cloneCard.css({display: "inline-block"});
+        $("#divCoins").append(cloneCard);
+        renderChart(current_usd_rate_0, current_usd_rate_1, current_usd_rate_2, current_usd_rate_3, current_usd_rate_4);
+        $("#spinner").remove();
+    } catch (err) {
+        noDadaMessage();   
+    } 
+};
 
 
 
@@ -239,7 +243,7 @@ function renderChart(current_usd_rate_0, current_usd_rate_1, current_usd_rate_2,
     ]
 });
     chart.render();
-}
+};
 
 
 
@@ -249,10 +253,4 @@ function aboutPage() {
     const cloneCard = $("#aboutContent").clone();
     cloneCard.css({display: "inline-block"});
     $("#divCoins").append(cloneCard);
-}
-
-
-
-
-
-
+};

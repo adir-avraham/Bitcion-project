@@ -21,16 +21,12 @@ const api = {
         })
     },
 
-    getCurrenciesPrice: (currencySymbol_1, currencySymbol_2, currencySymbol_3, currencySymbol_4, currencySymbol_5) => {
+    getCurrenciesPrice: (selectedCurrency) => {
         return $.ajax({
-            url: `${config.currenciesPrice}/pricemulti?fsyms=${currencySymbol_1},${currencySymbol_2},${currencySymbol_3},${currencySymbol_4},${currencySymbol_5}&tsyms=USD`,
+            url: `${config.currenciesPrice}/pricemulti?fsyms=${selectedCurrency[0]},${selectedCurrency[1]},${selectedCurrency[2]},${selectedCurrency[3]},${selectedCurrency[4]}&tsyms=USD`,
             method: "get"
         })
 
     }
 
-
-}
-
-
-
+};
