@@ -91,7 +91,8 @@ function draw(currenciesArray) {
         clonedCard.find(".infoBtn").attr("data-target", `#a${currency.id}`);
         clonedCard.find(".infoBtn").attr("aria-controls", `a${currency.id}`);
         clonedCard.find(".infoBtn").on("click", function (event) {
-            searchinfo(event.target.id.toLowerCase(), event)  
+            searchinfo(event.target.id.toLowerCase(), event); 
+            $(this).toggleClass("clicked"); 
         });
         clonedCard.find(".collapse").attr("id", `a${currency.id}`);
         clonedCard.find("label").attr("for", currency.symbol);

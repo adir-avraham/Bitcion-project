@@ -10,6 +10,7 @@ body {
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover; 
+    transition: 1000ms;
 }
 
 .bg-coin:hover {
@@ -36,4 +37,31 @@ body {
 
 .font-size {
     font-size: 0.9rem;
+}
+
+.infoBtn {
+    white-space: nowrap;
+    width: 100px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.infoBtn:hover {
+    overflow: visible;
+    min-width: 100px;
+    width: 200px;
+    width: fit-content;
+    white-space: normal;
+}
+
+.clicked {
+    overflow: visible;
+    min-width: 100px;
+    width: 200px;
+    width: fit-content;
+    white-space: normal;
+}
+
+.btn {
+    border-radius: 20px;
 }
