@@ -1,12 +1,13 @@
 body {
     font-family: Arial, Helvetica, sans-serif;
     user-select:none;   
+    overflow-x: hidden;
 }
 
 .bg-coin {
     color: rgb(12, 12, 12);
     opacity: 0.7;
-    background-image: url('../pic/bitcoin-910307.png');
+    background-image: url('../pic/circle2.png');
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover; 
