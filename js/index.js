@@ -11,7 +11,7 @@ async function init() {
     spinner("divCoins");
     try {
         const result = await api.getCurrencies(); 
-        currencies = result.slice(0, 120);
+        currencies = result.slice(0, 100);
         state = [ ...currencies ];
         draw(state);
         clearArray();
