@@ -132,9 +132,9 @@ async function searchinfo(currency, event) {
 function drawInfo(image, current_price_usd, current_price_eur, current_price_ils, coinCard) {     
     $(coinCard).find("#img").html(`<img src=${image}>`);
     $(coinCard).find("img").addClass("rounded-lg");
-    $(coinCard).find("#usd").text(`${current_price_usd} $`);
-    $(coinCard).find("#eur").html(`${current_price_eur} &euro;`);
-    $(coinCard).find("#ils").html(`${current_price_ils} &#8362;`);
+    $(coinCard).find("#usd").text(`${current_price_usd}$ |`);
+    $(coinCard).find("#eur").html(`${current_price_eur}&euro; |`);
+    $(coinCard).find("#ils").html(`&#8362;${current_price_ils}`);
 }
 
 
