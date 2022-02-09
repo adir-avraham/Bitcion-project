@@ -109,8 +109,7 @@ async function searchinfo(currency, event) {
     if (!$(`#a${currency}`).hasClass("show")) {
         spinner(`a${currency}`); 
     }
-    
-    const coinCard = event.toElement.parentElement.parentElement;
+    const coinCard = event.target.parentElement.parentElement;
     try{
         const result = await api.getCurrencyInfoById(currency);   
         const image = result.image.small;
