@@ -51,8 +51,7 @@ body {
     background-position: center;
     background-image: url("../pic/header.jpg");
     background-attachment: fixed;
-    background-size: cover;
-    
+    background-size: cover; 
 }
 
 
@@ -89,4 +88,15 @@ body {
 
 .btn:focus {
    box-shadow: none;
+}
+
+
+@media only screen and (max-width: 600px) {
+    .parallax1 {
+        min-height: 500px; 
+        background-position: center;
+        background-image: url("../pic/header.jpg");
+        background-size: cover; 
+    }
+    
 }
