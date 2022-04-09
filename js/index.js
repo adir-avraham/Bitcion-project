@@ -80,7 +80,7 @@ function draw(currenciesArray) {
         clonedCard.attr("id", `card_${index}`);
         clonedCard.css({ display: "inline-block" });
         clonedCard.find("#name").html(currency.name);
-        clonedCard.find("h5").html(currency.symbol.toUpperCase());
+        clonedCard.find("h6").html(currency.symbol.toUpperCase());
         
         clonedCard.find("input").attr("id", currency.symbol);
         clonedCard.find("input").attr("value", currency.symbol);
@@ -128,11 +128,13 @@ async function searchinfo(currency, event) {
 
 
 
-function drawInfo(image, current_price_usd, current_price_eur, current_price_ils, coinCard) {     
+function drawInfo(image, current_price_usd, current_price_eur, current_price_ils, coinCard) {   
+    $(coinCard).find(".overlay").toggleClass("overlay-show");  
+    $(coinCard).find(".infoBtn").text() == "More info" ?  $(coinCard).find(".infoBtn").text("Less info") :  $(coinCard).find(".infoBtn").text("More info");
     $(coinCard).find("#img").html(`<img src=${image}>`);
     $(coinCard).find("img").addClass("rounded-lg");
-    $(coinCard).find("#usd").text(`${current_price_usd}$ |`);
-    $(coinCard).find("#eur").html(`${current_price_eur}&euro; |`);
+    $(coinCard).find("#usd").text(`${current_price_usd}$`);
+    $(coinCard).find("#eur").html(`${current_price_eur}&euro;`);
     $(coinCard).find("#ils").html(`&#8362;${current_price_ils}`);
 }
 

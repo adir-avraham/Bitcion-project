@@ -1,37 +1,60 @@
 body {
     font-family: Arial, Helvetica, sans-serif;
     user-select:none;   
-
 }
 
 .bg-coin {
-    color: rgb(12, 12, 12);
-    opacity: 0.7;
-    transition: 1000ms;
-    background-image: linear-gradient(120deg, #f6d365 0%, #fda085 100%);
+    border-top: 4px solid #007bff;
+    position: relative;
+    background: #ADA996;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #EAEAEA, #DBDBDB, #F2F2F2, #ADA996);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #EAEAEA, #DBDBDB, #F2F2F2, #ADA996); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    transition: 650ms;
 }
 
+.overlay {
+    position: absolute;
+    bottom: 100%;
+    left: 0;
+    right: 0;
+    background-color: #3d4042;
+    overflow: hidden;
+    width: 100%;
+    height: 0;
+    transition: .5s ease;
+}
+
+.overlay-show {
+    bottom: 0;
+    height: 100%;
+}
+
+.text {
+    white-space: nowrap; 
+    color: white;
+    font-size: 20px;
+    position: absolute;
+    overflow: hidden;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+  }
+
 .bg-coin:hover {
-    transition: 1000ms;
-    opacity: 1;
+    border-top: 4px solid #3d4042;
+    transition: 650ms;
 }
 
 .parallax1 {
-    min-height: 750px; 
+    min-height: 500px; 
     background-position: center;
-    background-color: #333333;
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='400' viewBox='0 0 800 800'%3E%3Cg fill='none' stroke='%23444444' stroke-width='1'%3E%3Cpath d='M769 229L1037 260.9M927 880L731 737 520 660 309 538 40 599 295 764 126.5 879.5 40 599-197 493 102 382-31 229 126.5 79.5-69-63'/%3E%3Cpath d='M-31 229L237 261 390 382 603 493 308.5 537.5 101.5 381.5M370 905L295 764'/%3E%3Cpath d='M520 660L578 842 731 737 840 599 603 493 520 660 295 764 309 538 390 382 539 269 769 229 577.5 41.5 370 105 295 -36 126.5 79.5 237 261 102 382 40 599 -69 737 127 880'/%3E%3Cpath d='M520-140L578.5 42.5 731-63M603 493L539 269 237 261 370 105M902 382L539 269M390 382L102 382'/%3E%3Cpath d='M-222 42L126.5 79.5 370 105 539 269 577.5 41.5 927 80 769 229 902 382 603 493 731 737M295-36L577.5 41.5M578 842L295 764M40-201L127 80M102 382L-261 269'/%3E%3C/g%3E%3Cg fill='%23555555'%3E%3Ccircle cx='769' cy='229' r='5'/%3E%3Ccircle cx='539' cy='269' r='5'/%3E%3Ccircle cx='603' cy='493' r='5'/%3E%3Ccircle cx='731' cy='737' r='5'/%3E%3Ccircle cx='520' cy='660' r='5'/%3E%3Ccircle cx='309' cy='538' r='5'/%3E%3Ccircle cx='295' cy='764' r='5'/%3E%3Ccircle cx='40' cy='599' r='5'/%3E%3Ccircle cx='102' cy='382' r='5'/%3E%3Ccircle cx='127' cy='80' r='5'/%3E%3Ccircle cx='370' cy='105' r='5'/%3E%3Ccircle cx='578' cy='42' r='5'/%3E%3Ccircle cx='237' cy='261' r='5'/%3E%3Ccircle cx='390' cy='382' r='5'/%3E%3C/g%3E%3C/svg%3E");
+    background-image: url("../pic/header.jpg");
     background-attachment: fixed;
     background-size: cover;
+    
 }
 
-.tran {
-    transition: 3000ms;
-}
-
-.icon-size{
-    font-size: 1.2rem;
-}
 
 .font-size {
     font-size: 0.9rem;
@@ -41,7 +64,11 @@ body {
     white-space: nowrap;
     width: 100px;
     overflow: hidden;
-    text-overflow: ellipsis;
+    text-overflow: ellipsis;    
+    position: absolute;
+    right: 60%;
+    bottom: 0px;
+    z-index: 1;
 }
 
 .infoBtn:hover {
@@ -60,6 +87,6 @@ body {
     white-space: normal;
 }
 
-.btn {
-    border-radius: 20px;
+.btn:focus {
+   box-shadow: none;
 }

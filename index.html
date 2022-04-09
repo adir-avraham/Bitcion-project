@@ -8,85 +8,62 @@
     <meta name="viewport" content="width=device-width" , initial-scal-="1.0">
 </head>
 <body>
-    
+
     <!-- Navbaer -->
     <nav class=" navbar navbar-expand-lg navbar-dark bg-dark sticky-top ">
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggleExternalContent"
-                aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarToggleExternalContent">
-                <ul class="navbar-nav mr-auto">
-                    <li class="nav-item">
-                        <a id="home" class="nav-link" href="#">Home</a>
-                    </li>
-                    <li class="nav-item">
-                        <a id="reports" class="nav-link" href="#">Live Reports</a>
-                    </li>
-                    <li class="nav-item">
-                        <a id="about" class="nav-link" href="#">About</a>
-                    </li>
-                </ul>
-                <form class="form-inline my-2 my-lg-0">
-                    <input id="searchInput" class="form-control mr-sm-2 col-6" type="search" placeholder="Search by code.."
-                        aria-label="Search">
-                    <button id="searchBtn" class="btn btn-outline-primary my-2 my-sm-0" type="button">Search <i
-                            class="fas fa-search"></i></button>
-                </form>
-            </div>
-        </nav>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggleExternalContent"
+            aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarToggleExternalContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                    <a id="home" class="nav-link" href="#">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a id="reports" class="nav-link" href="#">Live Reports</a>
+                </li>
+                <li class="nav-item">
+                    <a id="about" class="nav-link" href="#">About</a>
+                </li>
+            </ul>
+            <form class="form-inline my-2 my-lg-0">
+                <input id="searchInput" class="form-control mr-sm-2 col-6" type="search" placeholder="Search by code.."
+                    aria-label="Search">
+                <button id="searchBtn" class="btn btn-warning my-2 my-sm-0" type="button">
+                    Search<i class="fas fa-search"></i>
+                </button>
+            </form>
+        </div>
+    </nav>
 
-    <!-- Carousel -->
-    <div id="carouselExampleInterval" class="carousel slide d-none d-lg-block d-xl-none d-xl-block" data-ride="carousel">
-        <div class="carousel-inner" style="height: 425px">
-            <div class="carousel-item tran" data-interval="6000">
-                <img style="height: 425px" src="./pic/bitcoin-black.jpg" class="d-block w-100" alt="image">
-            </div>
-            <div class="carousel-item active tran" data-interval="6000">
-                <img style="height: 525px" src="./pic/bitcoin-main.jpg" class="d-block w-100" alt="image">
-            </div>
-        </div>
-        <a class="carousel-control-prev" href="#carouselExampleInterval" role="button" data-slide="prev">
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="sr-only">Previous</span>
-        </a>
-        <a class="carousel-control-next" href="#carouselExampleInterval" role="button" data-slide="next">
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="sr-only">Next</span>
-        </a>
-    </div>
-    <div id="carouselExampleInterval" class="carousel slide d-block d-sm-none" data-ride="carousel">
-        <div class="carousel-inner" style="height: 425px">
-            <div class="carousel-item tran" data-interval="6000">
-                <img style="height: 425px" src="./pic/bitcoin-mobile2.jpg" class="d-block w-100" alt="image">
-            </div>
-            <div class="carousel-item active tran" data-interval="6000">
-                <img style="height: 425px" src="./pic/crypto-mobile.jpg" class="d-block w-100" alt="image">
-            </div>
-        </div>
+    <!-- Header -->
+    <div class="parallax1">
+
     </div>
 
     <!-- Main -->
-    <div class="container-fluid">
-        <div id="divCoins" class="row d-flex justify-content-around parallax1">
+    <div class="container-fluid bg-primary">
+        <div id="divCoins" class="row d-flex justify-content-around px-5">
             
         </div>
     </div>
 
     <!-- Card -->
-    <div id="coinCard" class="bg-coin card text-center rounded-circle my-3 border-white border-3" style="width: 18rem; height: 18rem;display: none">
-        <div class="card-body mt-1"> 
-            <div class="custom-control custom-switch text-center">
+    <div id="coinCard" class="bg-coin card shadow-lg my-3 border-bottom-0 border-right-0 border-left-0" style="width: 18rem; display: none">
+        <div class="card-body"> 
+            <div class="custom-control custom-switch text-right mb-1">
                 <input type="checkbox" class="custom-control-input input-cards-id" id="customSwitch1">
-                <label class="custom-control-label" for="customSwitch1"></label>
+                <label class="custom-control-label" for="customSwitch1">compare</label>
             </div>
-            <h5 class="card-title text-center"></h5>
-            <button id="name" type="button" class="btn btn-primary btn-sm infoBtn mb-2" data-toggle="collapse" data-target="#moreInfo"
-            aria-expanded="false" aria-controls="moreInfo">More info</button>
-            <div class="collapse text-center" id="moreInfo">
-                <span id="usd"></span>
-                <span id="eur"></span>
-                <span id="ils"></span>
+            <h6 class="card-title font-weight-bold" style="font-size: small;"></h6>
+            <p class="card-text mb-4" id="name" style="font-size: small;"></p>
+            <button type="button" class="btn btn-primary btn-sm infoBtn mb-2" 
+            >More info</button>
+            <div class=" text-center overlay text" style="font-size: small;" id="moreInfo">
+                <div id="usd" class="mt-1"></div>
+                <div id="eur"></div>
+                <div id="ils"></div>
                 <div id="img"></div>
             </div>
         </div>
@@ -143,32 +120,13 @@
         style="max-width: 940px; height: 100% ;margin-top: 3% ;display: none;">
         <div class="row no-gutters">
             <div class="col-md-3">
-                <img src="./pic/profile-pic.jpg" class="card-img profile-img" height="" alt="...">
-                <ul class="list-group list-group-flush">
-                    <li class="list-group-item">👨‍💻 Adir Avraham</li>
-                    <li class="list-group-item">💻 Web developer</li>
-                    <li class="list-group-item">📱 052-3180005</li>
-                </ul>
-                <div class="card-body">
-                    <a href="mailto:adir.avraham@gmail.com" class="card-link">
-                        <span class="far fa-envelope icon-size"></span> E-mail</a>
-                    <a href="https://github.com/" target="_blank" class="card-link">
-                        <span class=" fab fa-github icon-size"></span> GitHub</a>
-                </div>
+                <img src="./pic/about.jpg" class="card-img profile-img" height="" alt="...">
             </div>
             <div class="col-md-9">
                 <div class="card-body">
                     <h5 class="card-title">About</h5>
                     <p class="card-text">
-                        My name is Adir Avraham. I have a bachelor’s degree in Law. In high school I majored in computer
-                        science, and always loved IT.
-                    </p>
-                    <p class="card-text">
-                        I am currently studying at John Bryce College, completing a course in Web development. During this
-                        course I practice skills as a Full Stack Web Developer.
-                    </p>
-                    <p class="card-text">
-                        About the project: This project is a Single Page Application foundation about crypto currencies, which is
+                        This project is a Single Page Application foundation about crypto currencies, which is
                         currently a highly popular subject. In order to the provide useful information, I used three
                         different external API's which let the users access to relevant information of more
                         than 5,500 currencies in the most efficient and friendly way.
